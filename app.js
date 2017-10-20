@@ -27,7 +27,9 @@ app.use('/', index);
 app.use('/users', users);
 app.get('/beacons', beacons.listAll);
 app.get('/beacons/:name', beacons.findByName);
-//app.get('/beacons/:name', beacons.fuzzySearch);
+//app.get('/beacons/:active', beacons.listActive);
+
+//app.get('/beacons/:venue', beacons.fuzzySearch);
 
 app.post('/beacons', beacons.addBeacon);
 

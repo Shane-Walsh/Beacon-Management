@@ -18,7 +18,7 @@ db.once('open', function () {
 
 router.listAll = function(req, res) {
 
-    // Use the Beacons model to find all beacons
+    // find all beacons
     Beacon.find(function(err, beacons) {
         if (err)
             res.send(err);
@@ -27,30 +27,19 @@ router.listAll = function(req, res) {
     });
 }
 
-
 router.findByName = function(req, res) {
 
     // Use the Beacon model to find a single beacon by name
-    Beacon.find({ "name" : req.params.name },function(err, beacon) {
+    Beacon.findOne({ "name" : req.params.name },function(err, beacon) {
         if (err)
-            res.json({ message: 'Beacon NOT Found!', errmsg : err } );
+            res.send(err);
+        else if (beacon === null)
+            res.json({ message: 'Beacon NOT Found!' } );
         else
             res.json(beacon);
     });
 }
-/*
-router.fuzzySearch = function (req, res) {
 
-    //Beacon name fuzzy search
-    Beacon.find({name: {$regex: /^B/i, $options:'m'}}, function(err, beacon) {
-
-        if(err)
-            res.json({ message: 'NOT Found!', errmsg : err } );
-        else
-            res.json(beacon);
-    });
-}
-*/
 router.addBeacon = function(req, res) {
 
     //Add a NEW beacon
@@ -75,37 +64,34 @@ router.addBeacon = function(req, res) {
 
 router.updateVenue = function(req, res) {
 
-    //Find beacon by name and then Update venue
-    Beacon.findOneAndUpdate({"name":req.params.name}, {$set: { venue:req.body.venue}}, function(err, beacon){
-        if(err)
-            res.send(err);
+    if(req.body.venue === null || req.body.venue === "")
+        res.json({ message: 'Invalid Input!'});
 
-        res.json({ message: 'Venue Updated!'});
-    });
+    else {
+        //Find beacon by name and then Update venue
+        Beacon.findOneAndUpdate({"name": req.params.name}, {$set: {venue: req.body.venue}}, function (err, beacon) {
+            if (err)
+                res.send(err);
+
+            res.json({message: 'Venue Updated!'});
+        });
+    }
 }
 
 router.updatePlatform = function(req, res) {
 
-    //Find beacon by name and then Update platform
-    Beacon.findOneAndUpdate({"name":req.params.name}, {$set: { platform:req.body.platform}}, function(err, beacon){
-        if(err)
-            res.send(err);
+    if(req.body.platform === null || req.body.platform === "")
+        res.json({ message: 'Invalid Input!'});
 
-        res.json({ message: 'Platform Updated!'});
-    });
-}
+    else {
+        //Find beacon by name and then Update platform
+        Beacon.findOneAndUpdate({"name": req.params.name}, {$set: {platform: req.body.platform}}, function (err, beacon) {
+            if (err)
+                res.send(err);
 
-router.setActive = function(req, res) {
-
-    //Set beacon active true||false
-    Beacon.findOneAndUpdate({"name":req.params.name}, {$set: { active:req.body.active}}, function(err, beacon){
-        if(err)
-            res.send(err);
-        else if (req.body.active === true)
-            res.json({ message: 'Beacon Activated!'});
-        else
-            res.json({ message: 'Beacon NOT Active!'});
-    });
+            res.json({message: 'Platform Updated!'});
+        });
+    }
 }
 
 router.deleteBeacon = function(req, res) {
@@ -119,5 +105,43 @@ router.deleteBeacon = function(req, res) {
     });
 }
 
+router.setActive = function(req, res) {
+
+    // Set beacon active true||false
+    Beacon.findOneAndUpdate({"name":req.params.name}, {$set: { active:req.body.active}}, function(err, beacon){
+        if(err)
+            res.send(err);
+        else if (req.body.active === true)
+            res.json({ message: 'Beacon Activated!'});
+        else
+            res.json({ message: 'Beacon NOT Active!'});
+    });
+}
+/*
+router.listActive = function(req, res) {
+
+        // List all active beacons
+        Beacon.find({"active": true}, function (err, beacons) {
+
+            if (err)
+                res.send(err);
+
+            res.json(beacons);
+        });
+}
+
+
+router.fuzzySearch = function (req, res) {
+
+    //Beacon name fuzzy search
+    Beacon.find({"venue": {"$regex": "Home", "$options": "i"}}, function(err, beacon) {
+
+        if(err)
+            res.json({ message: 'NOT Found!' });
+        else
+            res.json(beacon);
+    });
+}
+*/
 
 module.exports = router;
