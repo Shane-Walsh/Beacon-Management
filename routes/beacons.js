@@ -129,6 +129,18 @@ router.listActive = function(req, res) {
         });
 }
 
+router.listInActive = function(req, res) {
+
+    // List all active beacons
+    Beacon.find({"active": false}, function (err, beacons) {
+
+        if (err)
+            res.send(err);
+
+        res.json(beacons);
+    });
+}
+
 /*
 router.fuzzySearch = function (req, res) {
 

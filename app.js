@@ -28,6 +28,7 @@ app.use('/users', users);
 app.get('/beacons', beacons.listAll);
 app.get('/beacons/:name', beacons.findByName);
 app.get('/beacons/:status/active', beacons.listActive);
+app.get('/beacons/:status/dormant', beacons.listInActive);
 
 //app.get('/beacons/:venue', beacons.fuzzySearch);
 
