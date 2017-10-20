@@ -122,7 +122,7 @@ router.listActive = function(req, res) {
         // List all active beacons
         Beacon.find({"active": true}, function (err, beacons) {
 
-            if (err)
+            if (err || !beacons)
                 res.send(err);
 
             res.json(beacons);
@@ -134,25 +134,24 @@ router.listInActive = function(req, res) {
     // List all active beacons
     Beacon.find({"active": false}, function (err, beacons) {
 
-        if (err)
+        if (err || !beacons)
             res.send(err);
 
         res.json(beacons);
     });
 }
 
-/*
 router.fuzzySearch = function (req, res) {
 
-    //Beacon name fuzzy search
-    Beacon.find({"venue": {"$regex": "Home", "$options": "i"}}, function(err, beacon) {
+    // Partial search for Venues
+    Beacon.find({"venue": {"$regex": req.query.venue, "$options": "i"}}, function(err, beacon) {
 
-        if(err)
-            res.json({ message: 'NOT Found!' });
+        if(err || !beacon)
+            res.json({ message: 'Query NOT Found!' });
         else
             res.json(beacon);
     });
 }
-*/
+
 
 module.exports = router;
