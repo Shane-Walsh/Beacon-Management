@@ -20,7 +20,7 @@ router.listAll = function(req, res) {
 
     // find all beacons
     Beacon.find(function(err, beacons) {
-        if (err)
+        if (err || !beacons)
             res.send(err);
 
         res.json(beacons);
@@ -31,9 +31,8 @@ router.findByName = function(req, res) {
 
     // Use the Beacon model to find a single beacon by name
     Beacon.findOne({ "name" : req.params.name },function(err, beacon) {
-        if (err)
-            res.send(err);
-        else if (beacon === null)
+
+        if (err || !beacon)
             res.json({ message: 'Beacon NOT Found!' } );
         else
             res.json(beacon);
@@ -117,7 +116,7 @@ router.setActive = function(req, res) {
             res.json({ message: 'Beacon NOT Active!'});
     });
 }
-/*
+
 router.listActive = function(req, res) {
 
         // List all active beacons
@@ -130,7 +129,7 @@ router.listActive = function(req, res) {
         });
 }
 
-
+/*
 router.fuzzySearch = function (req, res) {
 
     //Beacon name fuzzy search
