@@ -1,19 +1,7 @@
 var beacons = require('../models/beacons');
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
 var Beacon = require('../models/beacons');
-
-mongoose.connect('mongodb://localhost:27017/beaconsdb');
-
-var db = mongoose.connection;
-
-db.on('error', function (err) {
-    console.log('connection error', err);
-});
-db.once('open', function () {
-    console.log('connected to database');
-});
 
 
 router.listAll = function(req, res) {
