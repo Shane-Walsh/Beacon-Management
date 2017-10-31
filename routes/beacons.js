@@ -29,22 +29,30 @@ router.findByName = function(req, res) {
 
 router.addBeacon = function(req, res) {
 
-    //Add a NEW beacon
-    var beacon = new Beacon();
+    // Check if Beacon already exists
+    Beacon.findOne({"name": req.body.name}, function(err, beacon) {
 
-    beacon.active = req.body.active;
-    beacon.platform = req.body.platform;
-    beacon.venue = req.body.venue;
-    beacon.name = req.body.name;
+        if (err || !beacon) {
 
-    console.log('Adding Beacon: ' + JSON.stringify(beacon));
+            //Add a NEW beacon
+            var newBeacon = new Beacon();
 
-    // Save the beacon and check for errors
-    beacon.save(function(err) {
-        if (err)
-            res.send(err);
+            newBeacon.active = req.body.active;
+            newBeacon.platform = req.body.platform;
+            newBeacon.venue = req.body.venue;
+            newBeacon.name = req.body.name;
 
-        res.json({ message: 'Beacon Added!'});
+
+            // Save the beacon and check for errors
+            newBeacon.save(function (err) {
+            if (err)
+                res.send(err);
+
+            res.json({message: 'Beacon Added!'});
+        });
+    } else
+            res.json({message: 'Beacon Name already exists'});
+
     });
 }
 
