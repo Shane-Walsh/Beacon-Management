@@ -17,7 +17,7 @@ router.listAll = function(req, res) {
 
 router.findByName = function(req, res) {
 
-    // Use the Beacon model to find a single beacon by name
+    // Find a single beacon by name
     Beacon.findOne({ "name" : req.params.name },function(err, beacon) {
 
         if (err || !beacon)
@@ -42,7 +42,6 @@ router.addBeacon = function(req, res) {
             newBeacon.venue = req.body.venue;
             newBeacon.name = req.body.name;
 
-
             // Save the beacon and check for errors
             newBeacon.save(function (err) {
             if (err)
@@ -55,7 +54,6 @@ router.addBeacon = function(req, res) {
 
     });
 }
-
 
 router.updateVenue = function(req, res) {
 
