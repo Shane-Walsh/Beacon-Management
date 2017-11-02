@@ -28,23 +28,30 @@ router.findOne = function(req, res) {
 
 router.addProduct = function(req, res) {
 
-    //Add a NEW product
-    var product = new Product();
+    // Check if Product is already designated to a beacon
+    Product.findOne({ "designation": req.body.designation}, function(err, product) {
 
-    product.designation = req.body.designation;
-    product.price = req.body.price;
-    product.description = req.body.description;
-    product.type = req.body.type;
-    product.brand = req.body.brand;
+        if (err || !product) {
 
-    console.log('Adding Product: ' + JSON.stringify(product));
+            //Add a NEW product
+            var newProduct = new Product();
 
-    // Save the product and check for errors
-    product.save(function(err) {
-        if (err)
-            res.send(err);
+            newProduct.designation = req.body.designation;
+            newProduct.price = req.body.price;
+            newProduct.description = req.body.description;
+            newProduct.type = req.body.type;
+            newProduct.brand = req.body.brand;
 
-        res.json({ message: 'Product Added!'});
+
+            // Save the product and check for errors
+            newProduct.save(function (err) {
+                if (err)
+                    res.send(err);
+
+                res.json({message: 'Product Added!'});
+            });
+        } else
+            res.json({message: 'A Product is already designated to this Beacon'});
     });
 }
 
