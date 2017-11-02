@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var beacons = require("./routes/beacons");
 var products = require("./routes/products");
+var vouchers = require("./routes/vouchers");
 
 // connect to mongodb
 mongoose.connect('mongodb://localhost:27017/beaconsdb');
@@ -58,6 +59,10 @@ app.put('/products/:designation/brand', products.updateBrand);
 app.put('/products/:designation/type', products.updateType);
 app.put('/products/:designation/description', products.updateDesc);
 app.put('/products/:designation/price', products.updatePrice);
+
+
+//expose voucher routes
+app.get('/vouchers', vouchers.listAll);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
