@@ -46,7 +46,7 @@ app.get('/beacons/:venue/search', beacons.fuzzySearch);
 app.post('/beacons', beacons.addBeacon);
 app.put('/beacons/:name/venue', beacons.updateVenue);
 app.put('/beacons/:name/platform', beacons.updatePlatform);
-app.put('/beacons/:name/active', beacons.setActive);
+app.put('/beacons/:name/status', beacons.setStatus);
 app.delete('/beacons/:name', beacons.deleteBeacon);
 
 // expose product routes
@@ -63,6 +63,10 @@ app.put('/products/:designation/price', products.updatePrice);
 
 //expose voucher routes
 app.get('/vouchers', vouchers.listAll);
+app.get('/vouchers/:id', vouchers.findByID);
+app.post('/vouchers', vouchers.addVoucher);
+app.delete('/vouchers/:id', vouchers.deleteVoucher);
+app.put('/vouchers/:id/value', vouchers.updateValue);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

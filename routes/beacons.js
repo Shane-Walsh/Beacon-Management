@@ -98,7 +98,7 @@ router.deleteBeacon = function(req, res) {
     });
 }
 
-router.setActive = function(req, res) {
+router.setStatus = function(req, res) {
 
     // Set beacon active true||false
     Beacon.findOneAndUpdate({"name":req.params.name}, {$set: { active:req.body.active}}, function(err, beacon){
@@ -107,7 +107,7 @@ router.setActive = function(req, res) {
         else if (req.body.active === true)
             res.json({ message: 'Beacon Activated!'});
         else
-            res.json({ message: 'Beacon NOT Active!'});
+            res.json({ message: 'Beacon now Dormant'});
     });
 }
 
