@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-// expose beacon routes
+// beacon routes
 app.get('/beacons', beacons.listAll);
 app.get('/beacons/:name', beacons.findByName);
 app.get('/beacons/:status/active', beacons.listActive);
@@ -49,7 +49,7 @@ app.put('/beacons/:name/platform', beacons.updatePlatform);
 app.put('/beacons/:name/status', beacons.setStatus);
 app.delete('/beacons/:name', beacons.deleteBeacon);
 
-// expose product routes
+//product routes
 app.get('/products', products.findAll);
 app.get('/products/:designation', products.findOne);
 app.get('/products/:brand/search', products.partialSearch);
@@ -61,7 +61,7 @@ app.put('/products/:designation/description', products.updateDesc);
 app.put('/products/:designation/price', products.updatePrice);
 
 
-//expose voucher routes
+//voucher routes
 app.get('/vouchers', vouchers.listAll);
 app.get('/vouchers/:id', vouchers.findByID);
 app.post('/vouchers', vouchers.addVoucher);
