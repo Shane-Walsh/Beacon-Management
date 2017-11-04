@@ -1,3 +1,12 @@
+/*
+REF: SSD4 Agile S/W Practice course material Lab 6 API testing
+REF: https://www.terlici.com/2014/09/15/node-testing.html
+REF: https://www.sitepoint.com/sinon-tutorial-javascript-testing-mocks-spies-stubs/
+REF: https://groundberry.github.io/development/2016/12/10/testing-express-with-mocha-and-chai.html
+REF: http://chaijs.com/api/bdd/
+REF: http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.Wf3v42-7WRt
+*/
+
 var beacon = require('../../models/beacons');
 var chai = require('chai');
 var chaiHttp = require('chai-http');

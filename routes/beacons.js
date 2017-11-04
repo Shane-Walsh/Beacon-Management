@@ -1,3 +1,16 @@
+/*
+REF: SSD4 Web App Dev course material lab 2 + 3
+https://ddrohan.github.io/wit-wad/topic02-node/book-b-lab02/index.html#/06
+REF: http://mongoosejs.com/docs/queries.html
+REF: https://stackoverflow.com/questions/42541791/how-do-i-perform-a-find-query-in-mongoose
+REF: https://docs.mongodb.com/v3.2/reference/method/db.collection.findOneAndUpdate/
+REF: http://snipref.com/uncategorized/mongoose-js-find-with-regex/
+REF: https://stackoverflow.com/questions/45736636/mongoose-remove-a-entire-object-from-a-nested-array
+REF: https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
+REF: https://alexanderzeitler.com/articles/mongoose-referencing-schema-in-properties-and-arrays/
+REF: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+*/
+
 var beacons = require('../models/beacons');
 var express = require('express');
 var router = express.Router();
