@@ -198,4 +198,20 @@ describe('Beacon Endpoints', function (){
                 });
         });
     });
+    describe.only('PUT /beacons/:name/platform', function () {
+
+        it('should updated platform venue + confirm', function(done) {
+            chai.request(server)
+                .put('/beacons/testbeacon1/platform?="updated"')
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+
+                    var result = _.map(res.body, function (beacons) {
+                        return { platform: beacons.platform}
+                    });
+                    expect(res.body).to.have.property('message').equal('Platform Updated!');
+                    done();
+                });
+        });
+    });
 });
