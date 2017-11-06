@@ -5,6 +5,8 @@ REF: https://www.sitepoint.com/sinon-tutorial-javascript-testing-mocks-spies-stu
 REF: https://groundberry.github.io/development/2016/12/10/testing-express-with-mocha-and-chai.html
 REF: http://chaijs.com/api/bdd/
 REF: http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.Wf3v42-7WRt
+REF: https://mochajs.org
+REF: https://gist.github.com/yoavniran/1e3b0162e1545055429e#mocha
 */
 
 var beacon = require('../../models/beacons');
@@ -68,18 +70,21 @@ describe('Beacon Endpoints', function (){
                     expect(result[0]).to.include({name: "testbeacon1", venue: "testvenue1", platform: "testplatform1", active: false});
                     expect(result[1]).to.include({name: "testbeacon2", venue: "testvenue2", platform: "testplatform2", active: true});
                     done();
-
             });
         });
     });
-    describe.only('Get One /beacons', function(){
-        it('should return only one beacon', function(done) {
+    describe.only('Get One /beacons/name', function(){
+        it('should return only one beacon by name', function(done) {
 
-            chai.request(server).get('/beacons/name').end(function(err,res){
+            chai.request(server).get('/beacons/testbeacon1').end(function(err,res){
 
                 expect(err).to.be.null;
                 expect(res).to.have.status(200);
                 expect(res.body).to.be.a('object');
+                expect(res.body.name).equal("testbeacon1");
+                expect(res.body.venue).equal("testvenue1");
+                expect(res.body.platform).equal("testplatform1");
+                expect(res.body.active).equal(false);
                 done();
             });
         });
@@ -93,7 +98,7 @@ describe('Beacon Endpoints', function (){
         });
     });
     describe.only('POST /beacons', function(){
-        it('should confirm add beacon to collection ', function(done){
+        it('should confirm beacon added to collection ', function(done){
             var newBeacon = {
                 name: 'test',
                 venue: 'test venue',
