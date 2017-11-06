@@ -164,5 +164,22 @@ describe('Beacon Endpoints', function (){
                 });
         });
     });
+    describe.only('GET /beacons/:status/dormant', function () {
 
+        it('should list all Dormant beacons', function(done) {
+            chai.request(server)
+                .get('/beacons/status/dormant')
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.a('array');
+
+                    var result = _.map(res.body, function (beacons) {
+                        return { active: beacons.active}
+                    });
+                    expect(result).to.include({ active: false});
+                    expect(res.body.length).to.equal(1);
+                    done();
+                });
+        });
+    });
 });
