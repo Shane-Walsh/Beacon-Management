@@ -146,5 +146,23 @@ describe('Beacon Endpoints', function (){
                 });
         });
     });
+    describe.only('GET /beacons/:status/active', function () {
+
+        it('should list all active beacons', function(done) {
+            chai.request(server)
+                .get('/beacons/status/active')
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.a('array');
+
+                    var result = _.map(res.body, function (beacons) {
+                        return { active: beacons.active}
+                    });
+                    expect(result).to.include({ active: true});
+                    expect(res.body.length).to.equal(1);
+                    done();
+                });
+        });
+    });
 
 });
