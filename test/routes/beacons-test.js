@@ -53,7 +53,7 @@ describe('Beacon Endpoints', function (){
             });
         });
     });
-    afterEach(function (done) {
+    /*afterEach(function (done) {
         //Clean db of data after each test
         beacon.remove({},function(err) {
 
@@ -63,7 +63,7 @@ describe('Beacon Endpoints', function (){
                 done();
         });
 
-    });
+    });*/
 
     describe.only('Get All /beacons', function () {
         it('should return all beacons', function(done) {
@@ -109,22 +109,28 @@ describe('Beacon Endpoints', function (){
         });
     });
     describe.only('POST /beacons', function(){
-        it('should confirm beacon added to collection ', function(done){
-            var newBeacon = {
-                name: 'test',
-                venue: 'test venue',
-                platform: 'test platform',
-                active: false,
-                date: Date.now
-            };
-            chai.request(server)
-                .post('/beacons')
-                .send(newBeacon)
-                .end(function(err,res){
-                    expect(res).to.have.status(200);
-                    expect(res.body).to.have.property('message').equal('Beacon Added!');
-                    done();
-                });
+        it('should show message if beacon already exists', function(done){
+
+            var newBeacon = new beacon();
+
+            newBeacon.active = false;
+            newBeacon.platform = "testplatform1";
+            newBeacon.venue = "testvenue1";
+            newBeacon.name = "testbeacon1";
+            newBeacon.save(function (err) {
+                if(err)
+                    console.log("Error Saving to database" + err);
+                else {
+                    chai.request(server)
+                    .post('/beacons')
+                    .send(newBeacon)
+                    .end(function (err, res) {
+                        expect(res).to.have.status(200);
+                        expect(res.body).to.have.property('message').equal('Beacon Name already exists');
+                        done();
+                        });
+                    }
+            });
         });
     });
     describe.only('DELETE /beacons/:name', function () {
