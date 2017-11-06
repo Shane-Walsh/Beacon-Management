@@ -17,17 +17,6 @@ var beacons = require("./routes/beacons");
 var products = require("./routes/products");
 var vouchers = require("./routes/vouchers");
 
-// connect to mongodb
-mongoose.connect('mongodb://localhost:27017/beaconsdb');
-var db = mongoose.connection;
-
-db.on('error', function (err) {
-    console.log('connection error', err);
-});
-db.once('open', function () {
-    console.log('connected to database');
-});
-
 var app = express();
 
 // view engine setup

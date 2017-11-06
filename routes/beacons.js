@@ -15,6 +15,7 @@ var beacons = require('../models/beacons');
 var express = require('express');
 var router = express.Router();
 var Beacon = require('../models/beacons');
+var db = require('../dbconnection');
 
 
 router.listAll = function(req, res) {

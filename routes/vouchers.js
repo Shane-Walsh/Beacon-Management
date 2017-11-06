@@ -15,6 +15,7 @@ var vouchers = require('../models/vouchers');
 var express = require('express');
 var router = express.Router();
 var Voucher = require('../models/vouchers');
+var db = require('../dbconnection');
 
 router.listAll = function(req, res) {
 

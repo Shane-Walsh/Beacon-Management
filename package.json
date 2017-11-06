@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test mocha test/routes/beacons-test.js || true && mocha test/routes/products-test.js || true && mocha test/routes/vouchers-test.js || true"
+    "test": "NODE_ENV=test mocha test/routes/beacons-test.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

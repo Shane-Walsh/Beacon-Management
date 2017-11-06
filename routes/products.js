@@ -15,6 +15,7 @@ var products = require('../models/products');
 var express = require('express');
 var router = express.Router();
 var Product = require('../models/products');
+var db = require('../dbconnection');
 
 router.findAll = function(req, res) {
 
