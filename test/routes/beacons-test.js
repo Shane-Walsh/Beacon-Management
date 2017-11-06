@@ -53,6 +53,17 @@ describe('Beacon Endpoints', function (){
             });
         });
     });
+    afterEach(function (done) {
+        //Clean db of data after each test
+        beacon.remove({},function(err) {
+
+            if(err)
+                console.log("Error removing data" + err);
+            else
+                done();
+        });
+
+    });
 
     describe.only('Get All /beacons', function () {
         it('should return all beacons', function(done) {
