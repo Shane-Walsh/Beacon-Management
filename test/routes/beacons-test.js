@@ -27,9 +27,9 @@ describe('Beacon Endpoints', function (){
             var newBeacon1 = new beacon();
 
             newBeacon1.active = false;
-            newBeacon1.platform = "testPlatform1";
-            newBeacon1.venue = "testVenue1";
-            newBeacon1.name = "testBeacon1";
+            newBeacon1.platform = "testplatform1";
+            newBeacon1.venue = "testvenue1";
+            newBeacon1.name = "testbeacon1";
             newBeacon1.save(function (err) {
                 if(err)
                     console.log("Error Saving to database" + err);
@@ -37,10 +37,10 @@ describe('Beacon Endpoints', function (){
 
                     var newBeacon2 = new beacon();
 
-                    newBeacon2.active = false;
-                    newBeacon2.platform = "testPlatform2";
-                    newBeacon2.venue = "testVenue2";
-                    newBeacon2.name = "testBeacon2";
+                    newBeacon2.active = true;
+                    newBeacon2.platform = "testplatform2";
+                    newBeacon2.venue = "testvenue2";
+                    newBeacon2.name = "testbeacon2";
                     newBeacon2.save(function (err) {
                         if(err)
                             console.log("Error Saving to database" + err);
@@ -60,6 +60,13 @@ describe('Beacon Endpoints', function (){
                     expect(err).to.be.null;
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.a('array');
+                    expect(res.body.length).to.equal(2);
+
+                    var result = _.map(res.body, function (beacons) {
+                    return { name: beacons.name, venue: beacons.venue, platform: beacons.platform, active: beacons.active}
+                    });
+                    expect(result[0]).to.include({name: "testbeacon1", venue: "testvenue1", platform: "testplatform1", active: false});
+                    expect(result[1]).to.include({name: "testbeacon2", venue: "testvenue2", platform: "testplatform2", active: true});
                     done();
 
             });
