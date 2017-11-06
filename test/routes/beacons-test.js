@@ -182,4 +182,20 @@ describe('Beacon Endpoints', function (){
                 });
         });
     });
+    describe.only('PUT /beacons/:name/venue', function () {
+
+        it('should updated beacon venue + confirm', function(done) {
+            chai.request(server)
+                .put('/beacons/testbeacon1/venue?="updated"')
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+
+                    var result = _.map(res.body, function (beacons) {
+                        return { venue: beacons.venue}
+                    });
+                    expect(res.body).to.have.property('message').equal('Venue Updated!');
+                    done();
+                });
+        });
+    });
 });
