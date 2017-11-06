@@ -53,7 +53,7 @@ describe('Beacon Endpoints', function (){
             });
         });
     });
-    /*afterEach(function (done) {
+    afterEach(function (done) {
         //Clean db of data after each test
         beacon.remove({},function(err) {
 
@@ -63,7 +63,7 @@ describe('Beacon Endpoints', function (){
                 done();
         });
 
-    });*/
+    });
 
     describe.only('Get All /beacons', function () {
         it('should return all beacons', function(done) {
@@ -135,9 +135,9 @@ describe('Beacon Endpoints', function (){
     });
     describe.only('DELETE /beacons/:name', function () {
 
-        it('should delete beacon from collection by name', function(done) {
+        it('should delete beacon from collection by name + confirm', function(done) {
             chai.request(server)
-                .delete('/beacons/test')
+                .delete('/beacons/testbeacon1')
                 .end(function(err, res) {
                     expect(res).to.have.status(200);
                     expect(res.body).be.be.a('object');
