@@ -88,7 +88,7 @@ describe('Vouchers Endpoints', function (){
             });
         });
     });
-    describe.only('Get One /voucher', function(){
+    describe.only('Get /voucher', function(){
         it('should show message when voucher not found', function(done){
             chai.request(server).get('/vouchers/invalid').end(function(err,res){
 
@@ -99,23 +99,19 @@ describe('Vouchers Endpoints', function (){
             });
         });
     });
-   /* describe.only('POST /vouchers', function(){
+   describe.only('POST /vouchers', function(){
         it('should confirm add voucher to collection ', function(done){
-            var newVoucher = {
-                type: 'test',
-                value: 20,
-                description: 'test',
-                active: false,
-                date: Date.now
-            };
-            chai.request('http://localhost:3000')
+            var testVoucher = {"type":"coupon","value":20,"description":"Winter Sales","active":true};
+
+            chai.request(server)
                 .post('/vouchers')
-                .send(newVoucher)
-                .end(function(err,res){
+                .send(testVoucher)
+                .end(function (err, res) {
                     expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
                     expect(res.body).to.have.property('message').equal('Voucher Added!');
                     done();
                 });
         });
-    });*/
+    });
 });
