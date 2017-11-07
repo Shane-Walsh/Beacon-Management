@@ -142,5 +142,47 @@ describe('Product Endpoints', function (){
                 });
         });
     });
+    describe.only('PUT /products/:designation/brand', function () {
+
+        it('should updated product brand + confirm', function(done) {
+            chai.request(server)
+                .put('/products/testdesignation1/brand')
+                .query({"brand": "updated brand"})
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.body).to.have.property('message').equal('Brand Updated!');
+                    done();
+                });
+        });
+    });
+    describe.only('PUT /products/:designation/type', function () {
+
+        it('should updated product type + confirm', function(done) {
+            chai.request(server)
+                .put('/products/testdesignation1/type')
+                .query({"type": "updated type"})
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.body).to.have.property('message').equal('Product Type Updated!');
+                    done();
+                });
+        });
+    });
+    describe.only('PUT /products/:designation/description', function () {
+
+        it('should updated product description + confirm', function(done) {
+            chai.request(server)
+                .put('/products/testdesignation1/description')
+                .query({"description": "updated description"})
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.body).to.have.property('message').equal('Product Description Updated!');
+                    done();
+                });
+        });
+    });
 
 });
