@@ -8,13 +8,17 @@ https://github.com/Shane-Walsh/Beacon-Management-Web-App
 
 ## Overview.
 
-The objective of this Node.js web app is to manage a fleet of Bluetooth beacons, along with associated products and vouchers. Three resources were utilized in this app:
+The objective of this Node.js web app is to manage a fleet of Bluetooth beacons,
+along with associated products and vouchers.
+
+Three resources were utilized in this app:
 
 -Beacons
 -Products
 -Vouchers
 
-Basic CRUD operations can be carried out on all resources along with extra functionality - outlined in the endpoints list below:
+Basic CRUD operations can be carried out on all resources along with extra functionality
+- outlined in the endpoints list below:
 
 ## API endpoints.
 
