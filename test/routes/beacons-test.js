@@ -62,7 +62,6 @@ describe('Beacon Endpoints', function (){
             else
                 done();
         });
-
     });
 
     describe.only('Get All /beacons', function () {
@@ -109,7 +108,20 @@ describe('Beacon Endpoints', function (){
         });
     });
     describe.only('POST /beacons', function(){
-        it('should show message if beacon already exists', function(done){
+        it('should show message if beacon Added', function(done){
+
+            var testBeacon = {"name": "beacon1", "venue": "Electronic Store", "platform": "Eddystone", "active": true};
+
+                    chai.request(server)
+                    .post('/beacons')
+                    .send(testBeacon)
+                    .end(function (err, res) {
+                        expect(res).to.have.status(200);
+                        expect(res.body).to.have.property('message').equal('Beacon Added!');
+                        done();
+                        });
+        });
+        it('should show message if beacon already exists', function(done) {
 
             var newBeacon = new beacon();
 
@@ -121,15 +133,15 @@ describe('Beacon Endpoints', function (){
                 if(err)
                     console.log("Error Saving to database" + err);
                 else {
-                    chai.request(server)
-                    .post('/beacons')
-                    .send(newBeacon)
-                    .end(function (err, res) {
-                        expect(res).to.have.status(200);
-                        expect(res.body).to.have.property('message').equal('Beacon Name already exists');
-                        done();
-                        });
-                    }
+            chai.request(server)
+                .post('/beacons')
+                .send(newBeacon)
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.have.property('message').equal('Beacon Name already exists');
+                    done();
+                    });
+                }
             });
         });
     });
