@@ -230,4 +230,31 @@ describe('Beacon Endpoints', function (){
                 });
         });
     });
+    describe.only('GET FuzzySearch /beacons/:name/venue', function () {
+
+        it('should return matching venue of partial search', function(done) {
+            chai.request(server)
+                .get('/beacons/venue/search')
+                .query({"venue":"venue"})
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.type).to.eql("application/json");
+                    expect(res.body.length).to.eql(2);
+                    done();
+                });
+        });
+        it('should return 0 no matches found', function(done) {
+            chai.request(server)
+                .get('/beacons/venue/search')
+                .query({"venue":"invalidsearch"})
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.type).to.eql("application/json");
+                    expect(res.body.length).to.eql(0);
+                    done();
+                });
+        });
+    });
 });
