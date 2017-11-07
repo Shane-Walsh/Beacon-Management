@@ -7,6 +7,8 @@ REF: http://chaijs.com/api/bdd/
 REF: http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.Wf3v42-7WRt
 REF: https://mochajs.org
 REF: https://gist.github.com/yoavniran/1e3b0162e1545055429e#mocha
+REF: https://stackoverflow.com/questions/40309713/how-to-send-query-string-parameters-using-supertest
+REF: https://stackoverflow.com/questions/37129668/how-to-write-post-request-to-node-js-server-using-mocha-and-what-are-the-js-need
 */
 
 var beacon = require('../../models/beacons');
@@ -102,6 +104,7 @@ describe('Beacon Endpoints', function (){
             chai.request(server).get('/beacons/invalid').end(function(err,res){
 
                 expect(res).to.have.status(200);
+                expect(res).to.be.be.a('object');
                 expect(res.body.message).equal('Beacon NOT Found!');
                 done();
             });
@@ -117,6 +120,7 @@ describe('Beacon Endpoints', function (){
                     .send(testBeacon)
                     .end(function (err, res) {
                         expect(res).to.have.status(200);
+                        expect(res).to.be.be.a('object');
                         expect(res.body).to.have.property('message').equal('Beacon Added!');
                         done();
                         });
@@ -137,6 +141,7 @@ describe('Beacon Endpoints', function (){
                 .post('/beacons')
                 .send(newBeacon)
                 .end(function (err, res) {
+                    expect(res).to.be.be.a('object');
                     expect(res).to.have.status(200);
                     expect(res.body).to.have.property('message').equal('Beacon Name already exists');
                     done();
@@ -164,12 +169,14 @@ describe('Beacon Endpoints', function (){
             chai.request(server)
                 .get('/beacons/status/active')
                 .end(function(err, res) {
-                    expect(res).to.have.status(200);
-                    expect(res.body).to.be.a('array');
 
                     var result = _.map(res.body, function (beacons) {
                         return { active: beacons.active}
                     });
+
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.a('array');
+                    expect(res).to.be.be.a('object');
                     expect(result).to.include({ active: true});
                     expect(res.body.length).to.equal(1);
                     done();
@@ -182,12 +189,13 @@ describe('Beacon Endpoints', function (){
             chai.request(server)
                 .get('/beacons/status/dormant')
                 .end(function(err, res) {
-                    expect(res).to.have.status(200);
-                    expect(res.body).to.be.a('array');
 
                     var result = _.map(res.body, function (beacons) {
                         return { active: beacons.active}
                     });
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.a('array');
+                    expect(res).to.be.be.a('object');
                     expect(result).to.include({ active: false});
                     expect(res.body.length).to.equal(1);
                     done();
@@ -198,29 +206,25 @@ describe('Beacon Endpoints', function (){
 
         it('should updated beacon venue + confirm', function(done) {
             chai.request(server)
-                .put('/beacons/testbeacon1/venue?="updated"')
-                .end(function(err, res) {
-                    expect(res).to.have.status(200);
-
-                    var result = _.map(res.body, function (beacons) {
-                        return { venue: beacons.venue}
+                .put('/beacons/testbeacon1/venue')
+                .query({"venue": "updated venue"})
+                .end(function (err, res) {
+                        expect(res).to.have.status(200);
+                        expect(res).to.be.be.a('object');
+                        expect(res.body).to.have.property('message').equal('Venue Updated!');
+                        done();
                     });
-                    expect(res.body).to.have.property('message').equal('Venue Updated!');
-                    done();
-                });
         });
     });
     describe.only('PUT /beacons/:name/platform', function () {
 
         it('should updated platform venue + confirm', function(done) {
             chai.request(server)
-                .put('/beacons/testbeacon1/platform?="updated"')
+                .put('/beacons/testbeacon1/platform')
+                .query({"platform":"platform updated"})
                 .end(function(err, res) {
                     expect(res).to.have.status(200);
-
-                    var result = _.map(res.body, function (beacons) {
-                        return { platform: beacons.platform}
-                    });
+                    expect(res).to.be.be.a('object');
                     expect(res.body).to.have.property('message').equal('Platform Updated!');
                     done();
                 });
