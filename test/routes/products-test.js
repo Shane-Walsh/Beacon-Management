@@ -115,19 +115,15 @@ describe('Product Endpoints', function (){
     });
     describe.only('POST /products', function(){
         it('should confirm add product to collection ', function(done){
-            var newProduct = {
-                brand: 'test',
-                type: 'test',
-                description: 'test',
-                price: 100,
-                designation: 'test',
-                date: Date.now
-            };
-            chai.request('http://localhost:3000')
+
+            var testProduct = {"brand": "Samsung", "type": "Electronics", "description": "4k LCD TV", "price": 100, "designation":"Beacon1"};
+
+            chai.request(server)
                 .post('/products')
-                .send(newProduct)
-                .end(function(err,res){
+                .send(testProduct)
+                .end(function (err, res) {
                     expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
                     expect(res.body).to.have.property('message').equal('Product Added!');
                     done();
                 });
