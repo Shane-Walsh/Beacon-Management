@@ -28,6 +28,7 @@ describe('Beacon Endpoints', function (){
         //remove all data from db before each test
         beacon.remove({},function(err) {
 
+            //create a test instance of Beacon
             var newBeacon1 = new beacon();
 
             newBeacon1.active = false;
@@ -38,7 +39,7 @@ describe('Beacon Endpoints', function (){
                 if(err)
                     console.log("Error Saving to database" + err);
                 else{
-
+                    //create a 2nd test instance of Beacon
                     var newBeacon2 = new beacon();
 
                     newBeacon2.active = true;
@@ -253,6 +254,20 @@ describe('Beacon Endpoints', function (){
                     expect(res).to.be.be.a('object');
                     expect(res.type).to.eql("application/json");
                     expect(res.body.length).to.eql(0);
+                    done();
+                });
+        });
+    });
+    describe.only('PUT /beacons/:name/status', function () {
+
+        it('should set beacon status: dormant', function(done) {
+            chai.request(server)
+                .put('/beacons/testbeacon1/status')
+                .query({"active": false})
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.body).to.have.property('message').equal('Beacon now Dormant');
                     done();
                 });
         });
