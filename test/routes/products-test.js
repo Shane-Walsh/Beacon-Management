@@ -184,5 +184,32 @@ describe('Product Endpoints', function (){
                 });
         });
     });
+    describe.only('GET PartialSearch /products/:brand/search', function () {
+
+        it('should return matching brands of partial search', function(done) {
+            chai.request(server)
+                .get('/products/brand/search')
+                .query({"brand":"testbran"})
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.type).to.eql("application/json");
+                    expect(res.body.length).to.eql(2);
+                    done();
+                });
+        });
+        it('should return 0 no matches found', function(done) {
+            chai.request(server)
+                .get('/products/brand/search')
+                .query({"brand":"invalidsearch"})
+                .end(function(err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.be.a('object');
+                    expect(res.type).to.eql("application/json");
+                    expect(res.body.length).to.eql(0);
+                    done();
+                });
+        });
+    });
 
 });
