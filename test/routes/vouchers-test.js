@@ -47,7 +47,7 @@ describe('Vouchers Endpoints', function (){
                     newVoucher2.active = true;
                     newVoucher2.description = "testdesc2";
                     newVoucher2.value = 200;
-                    newVoucher2.type = "testype2";
+                    newVoucher2.type = "testtype2";
                     newVoucher2.save(function (err) {
                         if(err)
                             console.log("Error Saving to database" + err);
@@ -71,40 +71,35 @@ describe('Vouchers Endpoints', function (){
     describe.only('Get All /vouchers', function () {
         it('should return all vouchers', function(done) {
 
-            chai.request('http://localhost:3000').get('/vouchers').end(function(err,res){
+            chai.request(server).get('/vouchers').end(function(err,res){
 
                 expect(err).to.be.null;
                 expect(res).to.have.status(200);
                 expect(res.body).to.be.a('array');
+                expect(res.body.length).to.equal(2);
 
+                var result = _.map(res.body, function (vouchers) {
+                    return { type: vouchers.type, value: vouchers.value, description: vouchers.description, active: vouchers.active}
+                });
+                expect(result[0]).to.include({type: "testtype1", value: 100, description: "testdesc1", active: false});
+                expect(result[1]).to.include({type: "testtype2", value: 200, description: "testdesc2", active: true});
                 done();
 
             });
         });
     });
     describe.only('Get One /voucher', function(){
-        it('should return only one voucher', function(done) {
-
-            chai.request('http://localhost:3000').get('/vouchers/id').end(function(err,res){
-
-                expect(err).to.be.null;
-                expect(res).to.have.status(200);
-                expect(res.body).to.be.a('object');
-
-                done();
-
-            });
-        });
         it('should show message when voucher not found', function(done){
-            chai.request('http://localhost:3000').get('/vouchers/invalid').end(function(err,res){
+            chai.request(server).get('/vouchers/invalid').end(function(err,res){
 
                 expect(res).to.have.status(200);
+                expect(res).to.be.be.a('object');
                 expect(res.body.message).equal('Voucher NOT Found!');
                 done();
             });
         });
     });
-    describe.only('POST /vouchers', function(){
+   /* describe.only('POST /vouchers', function(){
         it('should confirm add voucher to collection ', function(done){
             var newVoucher = {
                 type: 'test',
@@ -122,5 +117,5 @@ describe('Vouchers Endpoints', function (){
                     done();
                 });
         });
-    });
+    });*/
 });
