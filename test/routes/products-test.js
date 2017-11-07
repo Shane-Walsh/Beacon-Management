@@ -132,8 +132,8 @@ describe('Product Endpoints', function (){
     describe.only('DELETE /products/:designation', function () {
 
         it('should delete a product from collection by designation', function(done) {
-            chai.request('http://localhost:3000')
-                .delete('/products/test')
+            chai.request(server)
+                .delete('/products/testdesignation1')
                 .end(function(err, res) {
                     expect(res).to.have.status(200);
                     expect(res.body).be.be.a('object');
