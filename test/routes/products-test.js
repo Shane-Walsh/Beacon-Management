@@ -25,7 +25,50 @@ chai.use(chaiHttp);
 chai.use(require('chai-things'));
 
 describe('Product Endpoints', function (){
+    beforeEach(function(done){
+        //remove all data from db before each test
+        product.remove({},function(err) {
 
+            //create a test instance of Beacon
+            var newProduct1 = new product();
+
+            newProduct1.designation = "testdesignation1";
+            newProduct1.price = 100;
+            newProduct1.description = "testdesc1";
+            newProduct1.type = "testtype1";
+            newProduct1.brand = "testbrand1";
+            newProduct1.save(function (err) {
+                if(err)
+                    console.log("Error Saving to database" + err);
+                else{
+                    //create a 2nd test instance of Beacon
+                    var newProduct2 = new product();
+
+                    newProduct2.designation = "testdesignation2";
+                    newProduct2.price = 200;
+                    newProduct2.description = "testdesc2";
+                    newProduct2.type = "testtype2";
+                    newProduct2.brand = "testbrand2";
+                    newProduct2.save(function (err) {
+                        if(err)
+                            console.log("Error Saving to database" + err);
+                        else
+                            done();
+                    });
+                }
+            });
+        });
+    });
+    afterEach(function (done) {
+        //Clean db of data after each test
+        product.remove({},function(err) {
+
+            if(err)
+                console.log("Error removing data" + err);
+            else
+                done();
+        });
+    });
     describe.only('Get All /products', function () {
         it('should return all products', function(done) {
 
@@ -48,7 +91,7 @@ describe('Product Endpoints', function (){
     describe.only('Get One /product', function(){
         it('should return only one product', function(done) {
 
-            chai.request(server).get('/products/designation1').end(function(err,res){
+            chai.request(server).get('/products/testdesignation1').end(function(err,res){
 
                 expect(err).to.be.null;
                 expect(res).to.have.status(200);
