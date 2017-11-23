@@ -9,12 +9,24 @@ app.config(function($routeProvider) {
                 controller  : 'mainController'
             })
 
-            // route for the view All page
-            .when('/viewall', {
-                templateUrl : 'pages/viewall.ejs',
-                controller  : 'viewAllController'
+            // route for the beacons page
+            .when('/beacons', {
+                templateUrl : 'pages/beacons.ejs',
+                controller  : 'beaconController'
+            })
+
+            // route for the products page
+            .when('/products', {
+                templateUrl : 'pages/products.ejs',
+                controller  : 'productController'
+            })
+
+            // route for the vouchers page
+             .when('/vouchers', {
+                templateUrl : 'pages/vouchers.ejs',
+                controller  : 'voucherController'
             });
-    });
+});
 
 
   

@@ -1,0 +1,22 @@
+<div class="jumbotron text-center">
+
+
+    <p><h5>{{ message }}</h5></p>
+
+    <div ng-controller="productController as list">
+        <table align="center" valign="middle">
+            <tbody ng-repeat="product in products">
+            <tr style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle"; >
+
+            <td>{{product.brand}}</td>
+            <td><span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>{{product.type}}</span></td>
+            <td>{{product.description}}</td>
+
+            <td>{{product.price}}</td>
+            <td>{{product.designation}}</td>
+            <td> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

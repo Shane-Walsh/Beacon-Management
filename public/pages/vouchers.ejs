@@ -1,0 +1,22 @@
+<div class="jumbotron text-center">
+
+
+    <p><h5>{{ message }}</h5></p>
+
+    <div ng-controller="voucherController as list">
+        <table align="center" valign="middle">
+            <tbody ng-repeat="voucher in vouchers">
+            <tr style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle"; >
+
+            <td>{{voucher.type}}</td>
+            <td><span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>{{voucher.value}}</span></td>
+            <td>{{voucher.description}}</td>
+
+            <td>{{voucher.active}}</td>
+            <td> </td>
+            <td> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
