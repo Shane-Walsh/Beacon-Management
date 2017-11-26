@@ -12,11 +12,34 @@
             <td><span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>{{beacon.venue}}</span></td>
             <td>{{beacon.platform}}</td>
 
-            <td></td>
+            <td>
+                <span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>
+                    <button type="button" class="btn btn-default" ng-click="delete(beacon.name)">
+                        <span class="glyphicon glyphicon-remove"></span> Remove
+                    </button>
+                </span>
+            </td>
             <td> </td>
             <td> </td>
             </tr>
             </tbody>
         </table>
+
+        <div class="jumbotron text-center">
+
+        <form ng-submit="addBeacon()"
+              style="margin-top:30px;">
+            <h5>Add a new Beacon</h5>
+
+            <div class="form-group" align="center">
+                <input type="string" class="form-control" placeholder="Name" ng-model="formData.name" ng-style="{'width': 100 + 'px'}"></input>
+                <input type="string" class="form-control" placeholder="Venue" ng-model="formData.venue" ng-style="{'width': 100 + 'px'}"></input>
+                <input type="string" class="form-control" placeholder="Platform" ng-model="formData.platform" ng-style="{'width': 100 + 'px'}"></input>
+                <input type="boolean" class="form-control" placeholder="Active" ng-model="formData.active" ng-style="{'width': 100 + 'px'}"></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+
     </div>
 </div>
