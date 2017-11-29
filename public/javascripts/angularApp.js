@@ -25,6 +25,18 @@ app.config(function($routeProvider) {
              .when('/vouchers', {
                 templateUrl : 'pages/vouchers.ejs',
                 controller  : 'voucherController'
+            })
+
+            // route for the dashboard
+            .when('/dashboard', {
+                templateUrl : 'pages/dashboard.ejs',
+                controller  : 'dashController'
+            })
+
+            // route for Add Beacon
+            .when('/newbeacon', {
+                templateUrl : 'pages/newbeacon.ejs',
+                controller  : 'addController'
             });
 });
 

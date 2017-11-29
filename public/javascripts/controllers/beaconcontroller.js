@@ -1,11 +1,10 @@
 var app = angular.module('BeaconMgmt');
 
-app.controller('beaconController', ['$scope', '$http',  function($scope, $http) {
+app.controller('beaconController', ['$scope', '$http','$location',  function($scope, $http, $location) {
     // create a message to display in our view
     $scope.message = 'List all beacons';
 
-    $scope.formData = {};
-    //$scope.newBeacon = [];
+    $scope.view = true;
 
     findAll();
 
@@ -32,18 +31,14 @@ app.controller('beaconController', ['$scope', '$http',  function($scope, $http) 
                 });
         }
     };
-    $scope.addBeacon = function(){
-        //$scope.formData.paymenttype = $scope.formData.paymentOptions.name;
-        $http.post('/beacons', $scope.formData)
-            .success(function(data) {
-                $scope.beacons = data;
-                //$location.path('/beacons');
-                console.log(data);
-                findAll();
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+
+    $scope.changeView = function(){
+        if($scope.view == true){
+            $scope.view = false;
+        }
+        else{
+            $scope.view = true;
+        }
     };
 
 }

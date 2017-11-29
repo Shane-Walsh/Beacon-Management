@@ -1,53 +1,153 @@
-<html ng-app="BeaconMgmt" >
+<html ng-app="BeaconMgmt">
+<html lang="en">
 <head>
-  <title>Beacon Management Web App</title>
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-route.js"></script>
+    <title>Beacon Management Web App</title>
 
-  <script src="/javascripts/angularApp.js"></script>
-  <script src="/javascripts/controllers/maincontroller.js"></script>
-  <script src="/javascripts/controllers/beaconcontroller.js"></script>
-  <script src="/javascripts/controllers/productcontroller.js"></script>
-  <script src="/javascripts/controllers/vouchercontroller.js"></script>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-  <style> .glyphicon-thumbs-up { cursor:pointer } </style>
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/css/square-menu.css" />
+
+    <!--   Angular JS  -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-route.js"></script>
+
+    <!--   Angular Controllers   -->
+    <script src="/javascripts/angularApp.js"></script>
+    <script src="/javascripts/controllers/maincontroller.js"></script>
+    <script src="/javascripts/controllers/dashcontroller.js"></script>
+    <script src="/javascripts/controllers/dashcontroller.js"></script>
+    <script src="/javascripts/controllers/beaconcontroller.js"></script>
+    <script src="/javascripts/controllers/newbeaconcontroller.js"></script>
+    <script src="/javascripts/controllers/productcontroller.js"></script>
+    <script src="/javascripts/controllers/vouchercontroller.js"></script>
+
+
 </head>
 
 <body ng-controller="mainController">
-<!-- NAVBAR -->
 
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand"><span>Beacon Management</span></a>
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="/img/sidebar-2.jpg">
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a class="simple-text">
+                    Beacon Management
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li><a href="#/dashboard"><i class="pe-7s-keypad"></i><p>Dashboard</p></a></li>
+                <li><a href="#/beacons"><i class="pe-7s-signal"></i><p>Beacons</p></a></li>
+                <li><a href="#/products"><i class="pe-7s-shopbag"></i><p>Products</p></a></li>
+                <li><a href="#/vouchers"><i class="pe-7s-piggy"></i><p>Vouchers</p></a></li>
+            </ul>
+        </div>
     </div>
 
-    <ul class="nav navbar-nav navbar-right">
-      <!--<div class="navbar-right">
-        <button type="button" class="btn btn-default navbar-btn btn-success">Register</button>
-        <button type="button" class="btn btn-default navbar-btn btn-primary">Log In</button>
-      </div>-->
-      <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-      <li><a href="#beacons"><i class="fa fa-list"></i>Beacons </a></li>
-      <li><a href="#products"><i class="fa fa-list"></i>Products </a></li>
-      <li><a href="#vouchers"><i class="fa fa-list"></i>Vouchers </a></li>
-    </ul>
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-dashboard"></i>
+                            </a>
+                        </li>
+                    </ul>
 
-  </div>
-</nav>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="">
+                                Account
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--   Inject Pages here  -->
+        <div class="content" id="main" ng-view>
+            <div class="container-fluid">
+                <div class="row">
 
 
-<!-- MAIN CONTENT AND INJECTED VIEWS -->
-<div id="main">
 
-  <div ng-view></div>
 
-</div> <!-- End of main div -->
-<footer class="text-center">
-  <p>Design by Shane Walsh</p>
-</footer>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script> <strong>Shane Walsh</strong>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+
 </body>
+
+<!--   Core JS Files   -->
+<script src="/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+<!-- Light Bootstrap Table Core javascript -->
+<script src="/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
 </html>

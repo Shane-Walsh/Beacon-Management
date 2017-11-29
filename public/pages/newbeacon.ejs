@@ -1,0 +1,12 @@
+<div class="content" ng-controller="addController as list">
+    <h4>{{message}}</h4>
+        <form ng-submit="addBeacon()" style="width: 900px">
+            <div class="form-group" align="center">
+                <input type="string" class="form-control" placeholder="Name" ng-model="formData.name"></input>
+                <input type="string" class="form-control" placeholder="Venue" ng-model="formData.venue"></input>
+                <input type="string" class="form-control" placeholder="Platform" ng-model="formData.platform"></input>
+                <input type="boolean" class="form-control" placeholder="Active" ng-model="formData.active"></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+</div>
