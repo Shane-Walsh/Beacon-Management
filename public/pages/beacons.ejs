@@ -12,7 +12,9 @@
                             <th>Name</th>
                             <th>Venue</th>
                             <th>Platform</th>
-                            <th>Status</th>
+                            <th>Active</th>
+                            <th>Remove</th>
+                            <th>Edit</th>
                             </thead>
                             <tbody ng-repeat="beacon in beacons">
                             <tr>
@@ -20,6 +22,8 @@
                                 <td><h5>{{beacon.venue}}</h5></td>
                                 <td><h5>{{beacon.platform}}</h5></td>
                                 <td><h5>{{beacon.active}}</h5></td>
+                                <td><a ng-click="delete(beacon.name)" class="pe-7s-trash"></a></td>
+                                <td><a ng-click="editBeacon(beacon)" class="pe-7s-edit"></a></td>
                             </tr>
                             </tbody>
                         </table>

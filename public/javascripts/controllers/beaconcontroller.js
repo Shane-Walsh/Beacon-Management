@@ -1,9 +1,9 @@
 var app = angular.module('BeaconMgmt');
 
 app.controller('beaconController', ['$scope', '$http','$location',  function($scope, $http, $location) {
-    // create a message to display in our view
-    $scope.message = 'List all beacons';
 
+    $scope.message = 'List all beacons';
+    $scope.selected = {}; //set to null-> getTemplate Edit beacon
     $scope.view = true;
 
     findAll();
@@ -19,7 +19,7 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
             });
     };
     $scope.delete = function(name) {
-        if (confirm("Are you sure you want to delete this Beacon?")){
+        if (confirm("Are you sure you want to remove this Beacon?")){
             console.log('Deleting Beacon: ' + name);
             $http.delete('/beacons/' + name)
                 .success(function(data) {
@@ -30,6 +30,15 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
                     console.log('Error: ' + data);
                 });
         }
+    };
+    $scope.getTemplate = function (beacon) {
+        if (beacon.beaconID === $scope.selected.beaconID){
+            return 'edit';
+        }
+        else return 'display';
+    };
+    $scope.editBeacon = function (beacon) {
+        $scope.selected = angular.copy(beacon);
     };
 
     $scope.changeView = function(){

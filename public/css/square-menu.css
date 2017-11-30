@@ -40,11 +40,11 @@ transition: all 0.1s ease-in;
 }
 
 ul.square-menu li a.slink-x {
-background: rgb(238, 124, 0);
+background: rgb(191, 125, 232);
 }
 
 ul.square-menu li a.slink-y {
-background: rgb(0, 92, 192);
+background: rgb(238, 124, 0);
 }
 
 ul.square-menu li a:hover {
