@@ -37,6 +37,18 @@ app.config(function($routeProvider) {
             .when('/newbeacon', {
                 templateUrl : 'pages/newbeacon.ejs',
                 controller  : 'addController'
+            })
+
+            // route for list active beacons
+            .when('/active', {
+            templateUrl : 'pages/active.ejs',
+            controller  : 'activeController'
+            })
+                
+            // route for list dormant beacons
+            .when('/dormant', {
+                templateUrl : 'pages/dormant.ejs',
+                controller  : 'dormantController'
             });
 });
 
