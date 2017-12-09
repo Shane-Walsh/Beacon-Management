@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+var mLab = 'mongodb://<dbuser>:<dbpassword>@ds135876.mlab.com:35876/heroku_c1s4z34k';
+
 // connect to mongodb
 mongoose.connect('mongodb://localhost:27017/beaconsdb',{
     useMongoClient: true });
