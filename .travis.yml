@@ -2,20 +2,3 @@ language: node_js
 node_js:
 - stable
 
-script:
-- npm run coverage
-- npm run check-coverage
-
-after_success:
-- npm run report-coverage
-
-branches:
-   only:
-   - development
-
-notifications:
-    email:
-      recipients:
-        - 20079607@mail.wit.ie      
-      on_success: never
-      on_failure: always
