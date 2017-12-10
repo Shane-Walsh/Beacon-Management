@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 
-var mLab = 'mongodb://<dbuser>:<dbpassword>@ds135876.mlab.com:35876/heroku_c1s4z34k';
+// connect to mLab Heroku or local
+var MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/beaconsdb';
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost:27017/beaconsdb',{
+mongoose.connect(MONGO_URI,{
     useMongoClient: true });
 
 var db = mongoose.connection;
@@ -17,3 +18,4 @@ db.once('open', function () {
 });
 
 module.exports = db;
+
