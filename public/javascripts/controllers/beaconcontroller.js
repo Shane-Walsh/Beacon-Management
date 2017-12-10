@@ -17,7 +17,7 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
                 console.log('Error: ' + data);
             });
     };
-    /*==================== EDIT =================*/
+
     $scope.getTemplate = function (beacon) {
         if (beacon._id === $scope.selected._id) {
             return 'edit';
@@ -25,21 +25,16 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
             return 'display';
         }
     };
-    $scope.reset = function () {
-        $scope.selected = {}
-    };
+
     $scope.editBeacon = function (beacon) {
         console.log(JSON.stringify(beacon))
         $scope.selected = angular.copy(beacon);
     };
 
-
-    $scope.updateVenue = function (beacon) {
+    $scope.updateVenue = function (venue, platform, active, data) {
         'use strict';
-        console.log('Here is BEACON: ' + beacon);
-        console.log(JSON.stringify(beacon.name));
-        console.log('Here is my beacon: ' + JSON.stringify(beacon));
-        $http.put('/beacons/' + beacon.name, beacon.venue).success(function (data) {
+
+        $http.put('/beacons/' + data.name + '/venue/',{ "venue": venue}).success(function (data) {
 
             console.log('Stringify Data: ' + JSON.stringify(data));
             findAll();
@@ -49,7 +44,32 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
             findAll();
             $scope.reset();
         });
-    }; // End Edit
+
+        $http.put('/beacons/' + data.name + '/platform/',{ "platform": platform}).success(function (data) {
+            console.log('Stringify Data: ' + JSON.stringify(data));
+            findAll();
+            $scope.reset();
+        }).error(function (data) {
+            console.log('Error: ' + data);
+            findAll();
+            $scope.reset();
+        });
+
+        $http.put('/beacons/' + data.name + '/status/',{ "active": active}).success(function (data) {
+            console.log('Stringify Data: ' + JSON.stringify(data));
+            findAll();
+            $scope.reset();
+        }).error(function (data) {
+            console.log('Error: ' + data);
+            findAll();
+            $scope.reset();
+        });
+
+    };// End Edit
+
+    $scope.reset = function () {
+        $scope.selected = {}
+    };
 
     $scope.listActive = function () {
 
@@ -84,15 +104,18 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
 
     };
 
-    $scope.findOne = function (query) {
+    $scope.findByName = function (query) {
+
+        console.log('Here is Query: ' + query);
 
         $http.get('beacons/' + query).success(function (data) {
-            console.log('Here is Data: ' + data);
-            console.log('Here is Query: ' + query);
+
             $scope.beacons = data;
             console.log('Here is Data after: ' + data);
         }).error(function (data) {
             console.log('Error: ' + data);
+            findAll();
+            $scope.reset();
         });
     };
 

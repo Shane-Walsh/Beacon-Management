@@ -28,12 +28,12 @@
                                 <td><a ng-click="editBeacon(beacon)" class="pe-7s-edit"></a></td>
                                 </script>
                                 <script type="text/ng-template" id="edit">
-                                    <td><h5><input type="text" ng-model="model.selected.name" /></h5></td>
-                                    <td><h5><input type="text" ng-model="model.selected.venue" /></h5></td>
-                                    <td><h5><input type="text" ng-model="model.selected.platform" /></h5></td>
-                                    <td><h5><input type="text" ng-model="model.selected.active" /></h5></td>
+                                    <td><h5>{{beacon.name}}</h5></td>
+                                    <td><h5><input type="text" required placeholder="Edit Venue" ng-model="model.selected.venue" /></h5></td>
+                                    <td><h5><input type="text" required placeholder="Edit Platform" ng-model="model.selected.platform" /></h5></td>
+                                    <td><h5><input type="text" required placeholder="Set Status" ng-model="model.selected.active" /></h5></td>
                                     <td>
-                                        <button ng-click="updateVenue(model.venue)" class="btn btn-warning" style="width: 75px">Save</button>
+                                        <button ng-click="updateVenue(model.selected.venue,model.selected.platform,model.selected.active,beacon)" class="btn btn-warning" style="width: 75px">Save</button>
                                         <button ng-click="reset()" class="btn btn-warning" style="width: 75px">Cancel</button>
                                     </td>
                                     <td></td>
@@ -48,7 +48,7 @@
                     <button ng-click="listInActive()" class="btn btn-primary">List Dormant</button>
                     <button ng-click="viewAll()" class="btn btn-primary">View All</button>
                     <button onclick="window.location.href='#/newbeacon'" class="btn btn-primary">Add</button>
-                    <form id="custom-search-form" class="form-search form-horizontal pull-right" ng-submit="findOne(search)">
+                    <form id="custom-search-form" class="form-search form-horizontal pull-right" ng-submit="findByName(search,beacon)">
                         <div class="input-append span12">
                             <input type="text" class="search-query" placeholder="Search" ng-model="search">
                             <button type="submit" class="btn"><i class="pe-7s-search"></i></button>
