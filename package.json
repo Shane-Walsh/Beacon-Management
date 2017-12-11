@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test mocha test/acceptance/ || true",
-    "coverage": "cross-env NODE_ENV=test PORT=4000 istanbul cover _mocha -- test/routes/ test/acceptance/*-test.js",
+    "coverage": "cross-env NODE_ENV=test PORT=4000 istanbul cover _mocha -- test/routes/ && mocha test/acceptance/*-test.js",
     "check-coverage": "istanbul check-coverage --statements 70 --branches 40 --functions 70 --lines 70",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "server": "nodemon bin/www"
