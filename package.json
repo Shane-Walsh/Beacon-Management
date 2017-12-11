@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test mocha test/routes/ || true"
+    "test": "NODE_ENV=test mocha test/routes/ || true",
+    "coverage": "cross-env NODE_ENV=test PORT=4000 istanbul cover _mocha -- test/routes/ || true",
+    "check-coverage": "istanbul check-coverage --statements 90 --branches 60 --functions 90 --lines 90"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
