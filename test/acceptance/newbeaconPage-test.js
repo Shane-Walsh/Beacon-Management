@@ -9,7 +9,7 @@ var driver;
 var mochaTimeOut = 30000;
 
 var pageSelector ;
-//var navBarSelector ;
+
 
 test.describe('New Beacon Page', function() {
     this.timeout(mochaTimeOut);
