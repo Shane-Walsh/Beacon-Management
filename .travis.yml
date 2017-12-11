@@ -2,6 +2,9 @@ language: node_js
 node_js:
 - stable
 
+services:
+- mongodb
+
 script:
 - npm run coverage
 - npm run check-coverage
