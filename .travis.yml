@@ -38,3 +38,11 @@ notifications:
         - 20079607@mail.wit.ie
       on_success: never
       on_failure: always
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "244b3125-1456-4938-ac08-d1060760c6f7"
+
+  app: Beacon-Mgmt
+  on: development
