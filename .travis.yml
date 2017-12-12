@@ -31,6 +31,7 @@ after_success:
 branches:
    only:
    - master
+   - developemnt
 
 notifications:
     email:
@@ -43,4 +44,4 @@ deploy:
   provider: heroku
   api_key: "244b3125-1456-4938-ac08-d1060760c6f7"
   app: beacon-mgmt
-  on: development
+  on: master
