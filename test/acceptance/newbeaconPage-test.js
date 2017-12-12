@@ -6,7 +6,7 @@ var until = webdriver.until;
 var By = webdriver.By;
 
 var driver;
-var mochaTimeOut = 30000;
+var mochaTimeOut = 50000;
 
 var pageSelector ;
 
@@ -22,7 +22,7 @@ test.describe('New Beacon Page', function() {
     } );
     test.beforeEach( function() {
         driver.get('http://localhost:3000/#/newbeacon');
-        driver.wait(until.elementLocated(pageSelector), 2000);
+        driver.wait(until.elementLocated(pageSelector), 5000);
     } );
     test.it('shows the main body', function() {
         driver.findElement(pageSelector)
