@@ -1,4 +1,4 @@
-# Assignment 1 - API testing and Source Control.
+# Assignment 2 - Automated Development Process.
 
 Name: Shane Walsh
 ID: 20079607
@@ -11,173 +11,237 @@ https://github.com/Shane-Walsh/Beacon-Management-Web-App
 The objective of this Node.js web app is to manage a fleet of Bluetooth beacons,
 along with associated products and vouchers.
 
-Three resources were utilized in this app:
-
--Beacons
--Products
--Vouchers
-
-Basic CRUD operations can be carried out on all resources along with extra functionality
-- outlined in the endpoints list below:
-
-## API endpoints.
-
-//beacons endpoints
-
-app.get('/beacons', beacons.listAll); - List all beacons
-app.get('/beacons/:name', beacons.findByName); - Find one beacon by name
-app.get('/beacons/:status/active', beacons.listActive); - List all active beacons
-app.get('/beacons/:status/dormant', beacons.listInActive); - List all inactive/dormant beacons
-app.get('/beacons/:venue/search', beacons.fuzzySearch); - Partial search of venues
-app.post('/beacons', beacons.addBeacon); - Add a beacon
-app.put('/beacons/:name/venue', beacons.updateVenue); - Update venue
-app.put('/beacons/:name/platform', beacons.updatePlatform); - Update Platform 
-app.put('/beacons/:name/status', beacons.setStatus); - Set beacon status active||inactive
-app.delete('/beacons/:name', beacons.deleteBeacon); - Delete a beacon
-
-//product endpoints
-
-app.get('/products', products.findAll); - Find all products
-app.get('/products/:designation', products.findOne); - Find one product
-app.get('/products/:brand/search', products.partialSearch); - Partial Search product brand
-app.post('/products', products.addProduct); - Add a Product
-app.delete('/products/:designation', products.deleteProduct); - Delete a product
-app.put('/products/:designation/brand', products.updateBrand); - Update product brand 
-app.put('/products/:designation/type', products.updateType); - Update product type
-app.put('/products/:designation/description', products.updateDesc); - Update description
-app.put('/products/:designation/price', products.updatePrice); - Update product price
+## Environment 
+--dependencies
 
 
-//voucher endpoints 
-
-app.get('/vouchers', vouchers.listAll);  - List all vouchers
-app.get('/vouchers/:id', vouchers.findByID); - Find one voucher by ID
-app.post('/vouchers', vouchers.addVoucher); - Add a voucher
-app.delete('/vouchers/:id', vouchers.deleteVoucher); - Delete a voucher
-app.put('/vouchers/:id/value', vouchers.updateValue); - Update voucher value
-
-## Data storage.
-Specified below is the database schema, i.e. JSON document structure for each collection type in the MongoDB database.
-
-//Beacons schema
-
-var BeaconSchema = new mongoose.Schema({
-
-   name: { type: String, required: true, lowercase: true},
-   venue: { type: String, required: true},
-   platform: { type: String, required: true},
-   active: { type: Boolean, required: true},
-   date: { type: Date, default: Date.now }
-});
-
-//Products schema
-
-var ProductSchema = new mongoose.Schema({
-
-   brand: { type: String, required: true},
-   type: { type: String, required: true},
-   description: { type: String, required: true},
-   price: { type: Number, required: true},
-   designation: { type: String, required: true, lowercase: true},
-   date: { type: Date, default: Date.now }
-});
-
-
-//Vouchers schema
-
-var VoucherSchema = new mongoose.Schema({
-
-   type: { type: String, required: true, lowercase: true},
-   value: { type: Number, required: true},
-   description: { type: String, required: true},
-   active: { type: Boolean, required: true},
-   date: { type: Date, default: Date.now }
-});
-
-## Sample Test execution.
-
-          Shane-Walshs-MacBook-Pro-2:Beacon Management Web App shanewalsh$ npm run test
-
-          > beacon-management-web-app@0.0.0 test /Users/shanewalsh/Documents/Software Systems Dev/Web App Dev/SSD4/Beacon Management Web App
-          > NODE_ENV=test mocha test/routes/ || true
+    -body-parser: 1.18.2
+    -cookie-parser: 1.4.3
+    -debug: 2.6.9
+    -ejs: 2.5.7
+    -express: 4.15.5
+    -morgan: 1.9.0
+    -mongodb: 2.0
+    -mongoose: 4.12.3
+    -serve-favicon: 2.4.5
+  
+ --devDependencies
+  
+  
+    -chai: 3.5.0
+    -chai-http: 2.0.1
+    -chai-things: 0.2.0
+    -babel-core: 6.14.0
+    -babel-loader: 6.4.1
+    -clean-webpack-plugin: 0.1.17
+    -coveralls: 2.13.1
+    -cross-env: 5.1.1
+    -css-loader: 0.24.0
+    -eslint: 4.1.1
+    -eslint-plugin-json: 1.2.0
+    -eslint-watch: 3.1.3
+    -extract-text-webpack-plugin: 1.0.1
+    -file-loader: 0.9.0
+    -html-webpack-plugin: 2.30.1
+    -istanbul: 0.4.5
+    -live-reload: 1.1.0
+    -nodemon: 1.12.1
+    -npm-run-all: 4.1.1
+    -rimraf: 2.6.2
+    -style-loader: 0.13.1
+    -url-loader: 0.5.9
+    -mocha: 3.4.2
+    -webpack: 1.15.0
+    -selenium-webdriver: 3.3.0
 
 
+## Build Automation 
 
-            Beacon Endpoints
-              Get All /beacons
-          connected to database
-          GET /beacons 200 22.871 ms - 322
-                ✓ should return all beacons (67ms)
-              Get One /beacons/name
-          GET /beacons/testbeacon1 200 10.366 ms - 160
-                ✓ should return only one beacon by name
-          GET /beacons/invalid 200 4.064 ms - 31
-                ✓ should show message when beacon not found
-              POST /beacons
-          POST /beacons 200 269.283 ms - 27
-                ✓ should show message if beacon Added (275ms)
-          POST /beacons 200 2.567 ms - 40
-                ✓ should show message if beacon already exists
-              DELETE /beacons/:name
-          DELETE /beacons/testbeacon1 200 10.954 ms - 29
-                ✓ should delete beacon from collection by name + confirm
-              GET /beacons/:status/active
-          GET /beacons/status/active 200 8.234 ms - 161
-                ✓ should list all active beacons
+        $ node bin/www                         - run app
+
+        $ npm run test                         - run API testing
+
+        $ mocha test/acceptance                - run Acceptance testing
+
+        $ npm run coverage                     - run API testing with coverage report
+
+        $ sudo git push origin development     - push to github repo -> Travis-CI -> Auto deploy to Heroku 
 
 
-##Data input samples
-
-//Add beacon
-{"name": "beacon10", "venue": "Homestore and More", "platform": "Eddystone", "active": true}
-
-//Update Beacon 
-{"venue": "Homebase"}
-{"platform": "Eddystone"}
-
-//Beacon Set active
-{"active": true}
-{"active": false}
-
-//Add product
-{"brand": "Panasonic", "type": "Electronics", "description": "4k LCD TV", "price": 400, "designation":"Beacon10"}
-
-//Update Product
-{"brand": "Philips"}
-{"type": "Footware"}
-{"description": "Nike trainers"}
-{"price": 200}
-
-//Add Voucher
-{"type": "Coupon", "value": 50, "description": "Digital Loyalty Deal", "active": true}
-
-//Update voucher
-{"value": 100}
+## Acceptance Testing
+Dashboard
+![dashboard](https://user-images.githubusercontent.com/20372577/33910698-8f84f104-df87-11e7-940c-828aa1afe1d9.png)
+![dasboard-test](https://user-images.githubusercontent.com/20372577/33910704-98ab5246-df87-11e7-9e7d-8ef845627c15.png)
 
 
-##Source-control 
-Git used for local source control. Branch -> Edit -> Merge workflow. When a feature is fully implemented and functioning correctly I pushed to Github remote server. Repo address at top of this report. 
+        test/acceptance/dashboardPage-test.js
+        
+        
+Beacons List Page
+![beacon list](https://user-images.githubusercontent.com/20372577/33910710-9ec7d294-df87-11e7-9470-2038df7a9cb0.png)
+![beaconlist-test](https://user-images.githubusercontent.com/20372577/33910725-a91b301a-df87-11e7-84f0-fb020753e306.png)
 
-##References  - inline references also included in code
+
+         test/acceptance/beaconsPage-test.js
+         
+Add Beacon Page
+![newbeacon](https://user-images.githubusercontent.com/20372577/33910744-bbb6f466-df87-11e7-9dc5-c59524f850ba.png)
+![newbeacontest](https://user-images.githubusercontent.com/20372577/33910754-c4968240-df87-11e7-92d6-064874353b4c.png)
+
+
+         test/acceptance/newBeaconPage-test.js
+
+Home Page
+![home](https://user-images.githubusercontent.com/20372577/33910735-b092bfac-df87-11e7-88ba-8445f0d3a52a.png)
+![home-test](https://user-images.githubusercontent.com/20372577/33910732-ae2953a2-df87-11e7-9ea4-b8c7d61b3187.png)
+
+
+          test/acceptance/homePage-test.js
+          
+     
+Products Page     
+![products](https://user-images.githubusercontent.com/20372577/33910765-cb7f7cec-df87-11e7-8c3d-0055702ba40b.png)
+![products-test](https://user-images.githubusercontent.com/20372577/33910761-c94fd426-df87-11e7-9251-ef17ae7f2b98.png)
+
+
+            test/acceptance/productsPage-test.js
+
+Voucher Page
+![voucherspage](https://user-images.githubusercontent.com/20372577/33910810-e591381e-df87-11e7-802f-ee3077a0dbb6.png)
+![vocuhers](https://user-images.githubusercontent.com/20372577/33910789-d544e3a2-df87-11e7-8db7-378296e65ce5.png)
+
+
+            test/acceptance/vouchersPage-test.js
+            
+            
+## Continuous Integration
+
+- Travis CI
+
+
+https://travis-ci.org/Shane-Walsh/Beacon-Management-Web-App
+
+
+Pushing to Guthub triggers Travis-CI automatically
+
+
+        $ sudo git push origin development     - push to github repo -> Travis-CI
+
+
+- Coveralls 
+
+
+https://coveralls.io/github/Shane-Walsh/Beacon-Management-Web-App
+
+
+
+Automated coverage reporting generated by coveralls.io 
+
+
+
+## Automated Deployment 
+
+http://beacon-mgmt.herokuapp.com/
+
+
+
+travis.yml file->
+
+
+        deploy:
+          provider: heroku
+          api_key: "API_Key"
+          app: beacon-mgmt
+          on: development
+  
+  
+
+Pushing to Guthub triggers Travis-CI which in turn auto deploys to Heroku 
+
+
+
+        $ sudo git push origin development     - push to github repo -> Travis-CI -> Auto deploy to Heroku 
+
+
+
+## References 
+
+REF: Agile Software Practices course material lab 6 - 12
+
 
 REF: SSD4 Web App Dev course material lab 2 + 3
+
+
 https://ddrohan.github.io/wit-wad/topic02-node/book-b-lab02/index.html#/06
+
+
 REF: http://mongoosejs.com/docs/queries.html
+
+
 REF: https://stackoverflow.com/questions/42541791/how-do-i-perform-a-find-query-in-mongoose
+
+
 REF: https://docs.mongodb.com/v3.2/reference/method/db.collection.findOneAndUpdate/
+
+
 REF: http://snipref.com/uncategorized/mongoose-js-find-with-regex/
+
+
 REF:https://stackoverflow.com/questions/45736636/mongoose-remove-a-entire-object-from-a-nested-array
+
+
 REF: https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
+
+
 REF: https://alexanderzeitler.com/articles/mongoose-referencing-schema-in-properties-and-arrays/
+
+
 REF: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+
+
 REF: SSD4 Agile S/W Practice course material Lab 6 API testing
+
+
 REF: https://www.terlici.com/2014/09/15/node-testing.html
+
+
 REF: https://github.com/JavaTheNutt/web_app_dev_project_backend/tree/master/test
+
+
 REF: https://www.sitepoint.com/sinon-tutorial-javascript-testing-mocks-spies-stubs/
+
+
 REF: https://groundberry.github.io/development/2016/12/10/testing-express-with-mocha-and-chai.html
+
+
 REF: http://chaijs.com/api/bdd/
+
+
 REF: http://mherman.org/blog/2015/09/10/testing-node-js-with-mocha-and-chai/#.Wf3v42-7WRt
+
+
 REF: https://mochajs.org
+
+
 REF: https://gist.github.com/yoavniran/1e3b0162e1545055429e#mocha
+
+
 REF: https://stackoverflow.com/questions/40309713/how-to-send-query-string-parameters-using-supertest
+
+
 REF: https://stackoverflow.com/questions/37129668/how-to-write-post-request-to-node-js-server-using-mocha-and-what-are-the-js-need
+
+
+REF: https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/
+
+
+REF: https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs
+
+
+REF: http://webdriver.io
+
+
+REF: https://code.tutsplus.com/tutorials/an-introduction-to-webdriver-using-the-javascript-bindings--cms-21855
+
+
+REF: https://blog.testproject.io/2017/06/07/javascript-testing-with-selenium-webdriver-mocha/

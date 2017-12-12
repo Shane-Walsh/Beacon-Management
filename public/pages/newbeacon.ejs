@@ -1,17 +1,17 @@
 <div class="content" ng-controller="addController as list" id="newBeacon">
     <h4>{{message}}</h4>
-        <form ng-submit="addBeacon()" style="width: 900px">
+        <form ng-submit="addBeacon()" style="width: 900px" id="beaconForm">
             <div class="form-group" align="center">
-                <input type="string" class="form-control" placeholder="Name" ng-model="formData.name" required></input>
-                <input type="string" class="form-control" placeholder="Venue" ng-model="formData.venue" required></input>
-                <input type="string" class="form-control" placeholder="Platform" ng-model="formData.platform" required></input>
-                <input type="boolean" class="form-control" placeholder="Active" ng-model="formData.active" required></input>
+                <input id="nameInput" type="string" class="form-control" placeholder="Name" ng-model="formData.name" required></input>
+                <input id="venueInput" type="string" class="form-control" placeholder="Venue" ng-model="formData.venue" required></input>
+                <input id="platformInput" type="string" class="form-control" placeholder="Platform" ng-model="formData.platform" required></input>
+                <input id="activeInput" type="boolean" class="form-control" placeholder="Active" ng-model="formData.active" required></input>
                 <!--<label class="label"><input  class="label__checkbox form-control" ng-model="formData.active" type="checkbox" />
                     <span class="label__text">
                      <span class="label__check"><i class="fa fa-check icon"></i></span>
                     </span>
                 </label>-->
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
         </form>
 </div>

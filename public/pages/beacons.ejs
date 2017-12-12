@@ -1,4 +1,4 @@
-<div class="content" ng-controller="beaconController as list">
+<div class="content" ng-controller="beaconController as list" id="beaconsList">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -9,21 +9,21 @@
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                             <thead>
-                            <th>Name</th>
-                            <th>Venue</th>
-                            <th>Platform</th>
-                            <th>Active</th>
-                            <th>Remove</th>
-                            <th>Edit</th>
+                            <th id="Name">Name</th>
+                            <th id="Venue">Venue</th>
+                            <th id="Platform">Platform</th>
+                            <th id="Active">Active</th>
+                            <th id="Remove">Remove</th>
+                            <th id="Edit">Edit</th>
                             </thead>
                             <tbody ng-repeat="beacon in beacons" ng-include="getTemplate(beacon)">
                             <tr>
 
                                 <script type="text/ng-template" id="display">
-                                <td><h5>{{beacon.name}}</h5></td>
-                                <td><h5>{{beacon.venue}}</h5></td>
-                                <td><h5>{{beacon.platform}}</h5></td>
-                                <td><h5>{{beacon.active}}</h5></td>
+                                <td id="beaconName"><h5>{{beacon.name}}</h5></td>
+                                <td id="beaconVenue"><h5>{{beacon.venue}}</h5></td>
+                                <td id="beaconPlatform"><h5>{{beacon.platform}}</h5></td>
+                                <td id="beaconActive"><h5>{{beacon.active}}</h5></td>
                                 <td><a ng-click="delete(beacon.name)" class="pe-7s-trash"></a></td>
                                 <td><a ng-click="editBeacon(beacon)" class="pe-7s-edit"></a></td>
                                 </script>
@@ -44,16 +44,16 @@
                     </div>
                 </div>
                 <div>
-                    <button ng-click="listActive()" class="btn btn-primary">List Active</button>
-                    <button ng-click="listInActive()" class="btn btn-primary">List Dormant</button>
-                    <button ng-click="viewAll()" class="btn btn-primary">View All</button>
-                    <button onclick="window.location.href='#/newbeacon'" class="btn btn-primary">Add</button>
-                    <form id="custom-search-form" class="form-search form-horizontal pull-right" ng-submit="findByName(search,beacon)">
+                    <button ng-click="listActive()" class="btn btn-primary" id="listActive">List Active</button>
+                    <button ng-click="listInActive()" class="btn btn-primary" id="listDormant">List Dormant</button>
+                    <button ng-click="viewAll()" class="btn btn-primary" id="viewAll">View All</button>
+                    <button onclick="window.location.href='#/newbeacon'" class="btn btn-primary" id="addBeacon">Add</button>
+                    <!--<form id="custom-search-form" class="form-search form-horizontal pull-right" ng-submit="findByName(search,beacon)">
                         <div class="input-append span12">
                             <input type="text" class="search-query" placeholder="Search" ng-model="search">
                             <button type="submit" class="btn"><i class="pe-7s-search"></i></button>
                         </div>
-                    </form>
+                    </form>-->
                 </div>
             </div>
         </div>

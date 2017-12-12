@@ -18,7 +18,7 @@ test.describe('New Beacon Page', function() {
             .withCapabilities( webdriver.Capabilities.chrome() )
             .build();
         pageSelector = By.id('newBeacon');
-        //navBarSelector = By.tagName('nav');
+
     } );
     test.beforeEach( function() {
         driver.get('http://localhost:3000/#/newbeacon');
@@ -30,32 +30,56 @@ test.describe('New Beacon Page', function() {
                 expect(element).to.not.equal(null );
             });
     });
-
-    /*test.it( 'shows the nav bar', function() {
-        driver.findElement(navBarSelector)
-            .then(function(element) {
-                expect(element).to.not.equal(null );
-            });
-    } );
-
-    test.it( 'shows the buttons', function() {
-        driver.findElements(By.tagName('button')).then(function(elements) {
-            expect(elements).to.not.equal(null );
-            elements[0].getText().then(function(text) {
-                expect(text).to.equal('Register');
-            } )  ;
-            elements[1].getText().then(function(text) {
-                expect(text).to.equal('Log In');
-            } )  ;
-        });
-    } );*/
-
     test.it( 'shows the main header', function() {
         driver.findElement(By.tagName('h4')).then( function( element ) {
             element.getText().then(function(text) {
                 expect(text).to.equal('Enter details to add a new beacon');
             });
         });
+    } );
+    test.it( 'shows the form', function() {
+        driver.findElement(By.tagName('form')).then(function(elements) {
+            expect(elements).to.not.equal(null );
+            elements.getText().then(function(text) {
+                expect(text).to.equal('Submit');
+            } )  ;
+        });
+    } );
+    test.it( 'shows the button', function() {
+        driver.findElement(By.tagName('button')).then(function(elements) {
+            expect(elements).to.not.equal(null );
+        });
+    } );
+
+    test.it( 'submits form information', function() {
+        var select = driver.findElement(By.id('nameInput'));
+        select.then(function(element) {
+                element.sendKeys('TestName');
+            } )
+            .then(function() {
+                return driver.findElement(By.id('venueInput'));
+            })
+            .then(function(element) {
+                element.sendKeys('TestVenue');
+            })
+            .then(function() {
+                return driver.findElement(By.id('platformInput'));
+            })
+            .then(function(element) {
+                element.sendKeys('TestPlatform');
+            })
+            .then(function() {
+                return driver.findElement(By.id('activeInput'));
+            })
+            .then(function(element) {
+                element.sendKeys('true');
+            })
+            .then(function() {
+                return driver.findElement(By.id('submit'));
+            })
+            .then(function(element) {
+                element.submit();
+            } );
     } );
 
     test.after(function() {

@@ -50,10 +50,10 @@
 
 <body ng-controller="mainController">
 
-<div class="wrapper">
+<div class="wrapper" id="indexPage">
     <div class="sidebar" data-color="purple" data-image="/img/sidebar-2.jpg">
 
-        <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper" id="sidebar">
             <div class="logo">
                 <a class="simple-text">
                     Beacon Management
@@ -61,12 +61,12 @@
             </div>
 
             <ul class="nav">
-                <li><a href="#/dashboard"><i class="pe-7s-keypad"></i><p>Dashboard</p></a></li>
-                <li><a href="#/beacons"><i class="pe-7s-signal"></i><p>Beacons</p></a></li>
-                <li><a href="#/products"><i class="pe-7s-shopbag"></i><p>Products</p></a></li>
-                <li><a href="#/vouchers"><i class="pe-7s-piggy"></i><p>Vouchers</p></a></li>
-                <li><a href="#"><i class="pe-7s-map-marker"></i><p>Maps</p></a></li>
-                <li><a href="#"><i class="pe-7s-chat"></i><p>Slack</p></a></li>
+                <li id="dashboard"><a href="#/dashboard"><i class="pe-7s-keypad"></i><p>Dashboard</p></a></li>
+                <li id="beacons"><a href="#/beacons"><i class="pe-7s-signal"></i><p>Beacons</p></a></li>
+                <li id="products"><a href="#/products"><i class="pe-7s-shopbag"></i><p>Products</p></a></li>
+                <li id="vouchers"><a href="#/vouchers"><i class="pe-7s-piggy"></i><p>Vouchers</p></a></li>
+                <li id="maps"><a href="#"><i class="pe-7s-map-marker"></i><p>Maps</p></a></li>
+                <li id="slack"><a href="#"><i class="pe-7s-chat"></i><p>Slack</p></a></li>
             </ul>
         </div>
     </div>
@@ -118,10 +118,10 @@
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <!--<li><a href="#">Home</a></li>-->
                     </ul>
                 </nav>
-                <p class="copyright pull-right">
+                <p class="copyright pull-right" id="footerTag">
                     &copy; <script>document.write(new Date().getFullYear())</script> <strong>Shane Walsh</strong>
                 </p>
             </div>
