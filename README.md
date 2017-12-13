@@ -65,7 +65,7 @@ along with associated products and vouchers.
 
         $ npm run coverage                     - run API testing with coverage report
 
-        $ sudo git push origin development     - push to github repo -> Travis-CI -> Auto deploy to Heroku 
+        $ sudo git push origin master     - push to github repo -> Travis-CI -> Auto deploy to Heroku
 
 
 ## Acceptance Testing
