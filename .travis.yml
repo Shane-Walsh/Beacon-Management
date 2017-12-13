@@ -42,6 +42,6 @@ notifications:
 
 deploy:
   provider: heroku
-  api_key: "ed0421bd-76c4-4187-9b5c-777aa53d1e77"
+  api_key: "HEROKU_KEY"
   app: beacon-mgmt
   on: master
