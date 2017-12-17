@@ -1,22 +1,59 @@
-<div id="products">
-
-
-    <p><h5 align="center">{{ message }}</h5></p>
-
-    <div ng-controller="productController as list">
-        <table align="center" valign="middle">
-            <tbody ng-repeat="product in products">
-            <tr style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle"; >
-
-            <td>{{product.brand}}</td>
-            <td><span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>{{product.type}}</span></td>
-            <td>{{product.description}}</td>
-
-            <td>{{product.price}}</td>
-            <td>{{product.designation}}</td>
-            <td> </td>
-            </tr>
-            </tbody>
-        </table>
+<div class="content" ng-controller="productController as list" id="productsList">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">{{message}}</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <th id="Brand">Brand</th>
+                            <th id="Type">Type</th>
+                            <th id="Description">Description</th>
+                            <th id="Price">Price</th>
+                            <th id="Designation">Designation</th>
+                            <th id="Remove">Remove</th>
+                            <th id="Edit">Edit</th>
+                            </thead>
+                            <tbody ng-repeat="product in products" ng-include="getTemplate(product)">
+                            <tr>
+                                <script type="text/ng-template" id="display">
+                                    <td id="productBrand"><h5>{{product.brand}}</h5></td>
+                                    <td id="productType"><h5>{{product.type}}</h5></td>
+                                    <td id="productDesc"><h5>{{product.description}}</h5></td>
+                                    <td id="productPrice"><h5>{{product.price}}</h5></td>
+                                    <td id="productDesignation"><h5>{{product.designation}}</h5></td>
+                                    <td><a ng-click="delete(product.designation)" class="pe-7s-trash"></a></td>
+                                    <td><a ng-click="editProduct(product)" class="pe-7s-edit"></a></td>
+                                </script>
+                                <script type="text/ng-template" id="edit">
+                                    <td><h5><input type="text" required placeholder="Edit Brand" ng-model="model.selected.brand" /></h5></td>
+                                    <td><h5><input type="text" required placeholder="Edit Type" ng-model="model.selected.type" /></h5></td>
+                                    <td><h5><input type="text" required placeholder="Edit Description" ng-model="model.selected.description" /></h5></td>
+                                    <td><h5><input type="text" required placeholder="Edit Price" ng-model="model.selected.price" /></h5></td>
+                                    <td><h5>{{product.designation}}</h5></td>
+                                    <td>
+                                        <button ng-click="updateProduct(model.selected.brand,model.selected.type,model.selected.description,model.selected.price,product)" class="btn btn-warning" style="width: 75px">Save</button>
+                                        <button ng-click="reset()" class="btn btn-warning" style="width: 75px">Cancel</button>
+                                    </td>
+                                </script>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="window.location.href='#/newproduct'" class="btn btn-primary" id="addProduct">Add</button>
+                    <!--<form id="custom-search-form display" class="form-search form-horizontal pull-right" ng-submit="searchBrand(query)">
+                        <div class="input-append span12">
+                            <input type="text" class="search-query" placeholder="Search Brands" ng-model="query">
+                            <button type="submit" class="btn"><i class="pe-7s-search"></i></button>
+                        </div>
+                    </form>-->
+                </div>
+            </div>
+        </div>
     </div>
 </div>

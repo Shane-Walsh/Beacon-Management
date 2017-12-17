@@ -1,3 +1,4 @@
+<!-- REF: https://stackoverflow.com/questions/17753927/angular-boolean-value-in-a-select-box-->
 <div class="content" ng-controller="beaconController as list" id="beaconsList">
     <div class="container-fluid">
         <div class="row">
@@ -31,9 +32,14 @@
                                     <td><h5>{{beacon.name}}</h5></td>
                                     <td><h5><input type="text" required placeholder="Edit Venue" ng-model="model.selected.venue" /></h5></td>
                                     <td><h5><input type="text" required placeholder="Edit Platform" ng-model="model.selected.platform" /></h5></td>
-                                    <td><h5><input type="text" required placeholder="Set Status" ng-model="model.selected.active" /></h5></td>
                                     <td>
-                                        <button ng-click="updateVenue(model.selected.venue,model.selected.platform,model.selected.active,beacon)" class="btn btn-warning" style="width: 75px">Save</button>
+                                        <select class="form-control" ng-model="model.selected.active" required>
+                                            <option value="{{true}}" ng-selected="model.selected.active === true">True</option>
+                                            <option value="{{false}}" ng-selected="model.selected.active === false">False</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button ng-click="updateBeacon(model.selected.venue,model.selected.platform,model.selected.active,beacon)" class="btn btn-warning" style="width: 75px">Save</button>
                                         <button ng-click="reset()" class="btn btn-warning" style="width: 75px">Cancel</button>
                                     </td>
                                     <td></td>

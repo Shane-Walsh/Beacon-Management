@@ -1,22 +1,54 @@
-<div id="vouchers">
+<div class="content" ng-controller="voucherController as list" id="vouchersList">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">{{message}}</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <th id="Type">Type</th>
+                            <th id="Value">Value</th>
+                            <th id="Description">Description</th>
+                            <th id="Remove">Remove</th>
+                            <th id="Edit">Edit</th>
+                            </thead>
+                            <tbody ng-repeat="voucher in vouchers" ng-include="getTemplate(voucher)">
+                            <tr>
 
-
-    <p><h5 align="center">{{ message }}</h5></p>
-
-    <div ng-controller="voucherController as list">
-        <table align="center" valign="middle">
-            <tbody ng-repeat="voucher in vouchers">
-            <tr style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle"; >
-
-            <td>{{voucher.type}}</td>
-            <td><span style="height:55px; font-size:20px; margin-left:20px; margin-right:20px; valign="middle";>{{voucher.value}}</span></td>
-            <td>{{voucher.description}}</td>
-
-            <td>{{voucher.active}}</td>
-            <td> </td>
-            <td> </td>
-            </tr>
-            </tbody>
-        </table>
+                                <script type="text/ng-template" id="display">
+                                    <td id="voucherType"><h5>{{voucher.type}}</h5></td>
+                                    <td id="voucherValue"><h5>{{voucher.value}}</h5></td>
+                                    <td id="voucherDesc"><h5>{{voucher.description}}</h5></td>
+                                    <td><a ng-click="delete(voucher._id)" class="pe-7s-trash"></a></td>
+                                    <td><a ng-click="editVoucher(voucher)" class="pe-7s-edit"></a></td>
+                                </script>
+                                <script type="text/ng-template" id="edit">
+                                    <td><h5>{{voucher.type}}</h5></td>
+                                    <td><h5><input type="text" required placeholder="Edit Value" ng-model="model.selected.value" /></h5></td>
+                                    <td><h5>{{voucher.description}}</h5></td>
+                                    <td>
+                                        <button ng-click="updateVoucher(model.selected.value,voucher)" class="btn btn-warning" style="width: 75px">Save</button>
+                                        <button ng-click="reset()" class="btn btn-warning" style="width: 75px">Cancel</button>
+                                    </td>
+                                </script>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="window.location.href='#/newvoucher'" class="btn btn-primary" id="addVoucher">Add</button>
+                    <!--<form id="custom-search-form" class="form-search form-horizontal pull-right" ng-submit="findByName(search,beacon)">
+                        <div class="input-append span12">
+                            <input type="text" class="search-query" placeholder="Search" ng-model="search">
+                            <button type="submit" class="btn"><i class="pe-7s-search"></i></button>
+                        </div>
+                    </form>-->
+                </div>
+            </div>
+        </div>
     </div>
 </div>

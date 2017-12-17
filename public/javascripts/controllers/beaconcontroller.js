@@ -25,13 +25,13 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
             return 'display';
         }
     };
-
+    //Copy selected beacon to edit
     $scope.editBeacon = function (beacon) {
         console.log(JSON.stringify(beacon))
         $scope.selected = angular.copy(beacon);
     };
-
-    $scope.updateVenue = function (venue, platform, active, data) {
+    //Edit beacon list
+    $scope.updateBeacon = function (venue, platform, active, data) {
         'use strict';
 
         $http.put('/beacons/' + data.name + '/venue/',{ "venue": venue}).success(function (data) {
@@ -74,9 +74,8 @@ app.controller('beaconController', ['$scope', '$http','$location',  function($sc
     $scope.listActive = function () {
 
         $http.get('beacons/:status/active').success(function (data) {
-            console.log(data);
+            console.log("here is data: " + data);
             $scope.beacons = data;
-            //$location.path('/beacons');
         }).error(function (data) {
             console.log('Error: ' + data);
         });
