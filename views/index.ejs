@@ -9,7 +9,6 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <meta name="google-signin-client_id" content="133861820419-l1t2dhg2psu7oc2c61mf5ha3sbn69ljf.apps.googleusercontent.com">
 
 
     <!-- Bootstrap core CSS     -->
@@ -31,10 +30,18 @@
 
     <!--    Google API's    -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>-->
+
+    <script type="text/javascript" src="/javascripts/controllers/mapscontroller.js"></script>
 
     <!--   Angular JS  -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-route.js"></script>
+
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>-->
+    <script src="//rawgit.com/angular-ui/angular-google-maps/2.1.5/dist/angular-google-maps.min.js"></script>
+    <!--<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
 
 
     <!--   Angular Controllers   -->
@@ -45,6 +52,10 @@
     <script src="/javascripts/controllers/newbeaconcontroller.js"></script>
     <script src="/javascripts/controllers/productcontroller.js"></script>
     <script src="/javascripts/controllers/vouchercontroller.js"></script>
+    <script src="/javascripts/controllers/productcontroller.js"></script>
+    <script src="/javascripts/controllers/newproductcontroller.js"></script>
+    <script src="/javascripts/controllers/vouchercontroller.js"></script>
+    <script src="/javascripts/controllers/newvouchercontroller.js"></script>
 
 </head>
 
@@ -65,8 +76,7 @@
                 <li id="beacons"><a href="#/beacons"><i class="pe-7s-signal"></i><p>Beacons</p></a></li>
                 <li id="products"><a href="#/products"><i class="pe-7s-shopbag"></i><p>Products</p></a></li>
                 <li id="vouchers"><a href="#/vouchers"><i class="pe-7s-piggy"></i><p>Vouchers</p></a></li>
-                <li id="maps"><a href="#"><i class="pe-7s-map-marker"></i><p>Maps</p></a></li>
-                <li id="slack"><a href="#"><i class="pe-7s-chat"></i><p>Slack</p></a></li>
+                <li id="maps"><a href="#/maps"><i class="pe-7s-map-marker"></i><p>Maps</p></a></li>
             </ul>
         </div>
     </div>
@@ -122,7 +132,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right" id="footerTag">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <strong>Shane Walsh</strong>
+                    <script>document.write(new Date().getFullYear())</script> <strong>Shane Walsh</strong>
                 </p>
             </div>
         </footer>

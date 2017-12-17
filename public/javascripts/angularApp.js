@@ -49,6 +49,21 @@ app.config(function($routeProvider) {
             .when('/dormant', {
                 templateUrl : 'pages/dormant.ejs',
                 controller  : 'dormantController'
+            })
+            // route for Add Product
+            .when('/newproduct', {
+                templateUrl : 'pages/newproduct.ejs',
+                controller  : 'addProdController'
+            })
+            // route for Add Voucher
+            .when('/newvoucher', {
+                templateUrl : 'pages/newvoucher.ejs',
+                controller  : 'addVoucherController'
+            })
+            // route for Maps
+            .when('/maps', {
+                templateUrl : 'pages/maps.ejs',
+                controller  : 'MapCtrl'
             });
 });
 

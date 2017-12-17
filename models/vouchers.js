@@ -9,7 +9,7 @@ var VoucherSchema = new mongoose.Schema({
     type: { type: String, required: true, lowercase: true},
     value: { type: Number, required: true},
     description: { type: String, required: true},
-    active: { type: Boolean, required: true},
+    active: { type: Boolean},
     date: { type: Date, default: Date.now }
 
 });
