@@ -36,7 +36,7 @@ Check browser at:
 
 Deployed on Heroku at:
 
-            http://beacon-mgmt.herokuapp.com
+ http://beacon-mgmt.herokuapp.com
 
 ## Environment
 
