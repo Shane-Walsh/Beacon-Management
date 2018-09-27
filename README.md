@@ -17,7 +17,29 @@ associated products and digital vouchers.
 * Travis CI
 * Coveralls code coverage
 
-## Environment 
+## Prerequisites
+
+* Node      - https://nodejs.org
+* NPM       - Packaged with NodeJS
+* MongoDB   - https://www.mongodb.com
+
+## To run locally
+
+            $npm install
+            $node bin/www
+
+Check browser at:
+
+            localhost:3000
+
+## Deployment
+
+Deployed on Heroku at:
+
+            http://beacon-mgmt.herokuapp.com
+
+## Environment
+
 --dependencies
 
 
