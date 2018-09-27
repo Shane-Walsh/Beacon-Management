@@ -1,15 +1,21 @@
-# Assignment 2 - Automated Development Process.
+# Beacon Management App
 
-Name: Shane Walsh
-ID: 20079607
+## Overview
 
-Github Repo:
-https://github.com/Shane-Walsh/Beacon-Management-Web-App
+MEAN stack CRUD application developed as part of a college project to demonstrate testing, code coverage and automated deployment.  
 
-## Overview.
+The objective of this web app is to manage Bluetooth beacons along with their 
+associated products and digital vouchers.
 
-The objective of this Node.js web app is to manage a fleet of Bluetooth beacons,
-along with associated products and vouchers.
+## Technologies
+
+* Node.js
+* Angular.js
+* Express Server
+* MongoDB
+* Mocha Chai
+* Travis CI
+* Coveralls code coverage
 
 ## Environment 
 --dependencies
